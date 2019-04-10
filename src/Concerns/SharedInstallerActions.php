@@ -9,17 +9,13 @@ trait SharedInstallerActions
     protected function publishLarapushResources()
     {
         $this->bulkInfo(2, 'Publishing Larapush resources...', 1);
-        $this->runProcess('php artisan vendor:publish
-                                       --provider="Brunocfalcao\Larapush\LarapushServiceProvider"
-                                       --force
-                                       --quiet');
+        $this->runProcess('php artisan vendor:publish --provider="Brunocfalcao\Larapush\LarapushServiceProvider" --force --quiet');
     }
 
     protected function clearConfigurationCache()
     {
         $this->bulkInfo(2, 'Cleaning Configuration cache...', 1);
-        $this->runProcess('php artisan config:clear
-                                       --quiet', getcwd());
+        $this->runProcess('php artisan config:clear --quiet', getcwd());
     }
 
     protected function unsetEnvData()
