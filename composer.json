@@ -1,0 +1,57 @@
+{
+    "name": "brunocfalcao/larapush",
+    "description": "php artisan push - Deploy your codebase into your web server with a single Artisan command",
+    "keywords": [
+        "brunocfalcao",
+        "larapush",
+        "bruno falcao"
+    ],
+    "homepage": "https://github.com/brunocfalcao/larapush",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bruno Falcao",
+            "email": "bruno.falcao@brunofalcao.me",
+            "homepage": "https://www.brunofalcao.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "~5.8.0",
+        "chumper/zipper": "^1.0",
+        "kitetail/zttp": "^0.4.0",
+        "sixlive/dotenv-editor": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Brunocfalcao\\Larapush\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Brunocfalcao\\Larapush\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Brunocfalcao\\Larapush\\LarapushServiceProvider"
+            ]
+        }
+    }
+}
