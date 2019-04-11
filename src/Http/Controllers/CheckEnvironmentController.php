@@ -2,10 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Http\Controllers;
 
-use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
+use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
 
 final class CheckEnvironmentController extends RemoteBaseController
 {

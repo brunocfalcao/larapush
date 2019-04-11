@@ -9,7 +9,7 @@ abstract class RemoteBaseController extends Controller
 {
     public function __destruct()
     {
-        /**
+        /*
          * Any Larapush controller transaction will disable its own (and any other)
          * client access grant token that is still active for the client id defined
          * for Larapush. This is done to avoid client access token grants utilization
