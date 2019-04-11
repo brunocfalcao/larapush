@@ -66,7 +66,8 @@ All done! If it goes well, you should see:
 ```bash
 All good! Now you can push your codebase to your remote server!
 
-Don't forget to update your larapush.php configuration file for the correct codebase files and directories that you want to upload.
+Don't forget to update your larapush.php configuration file for the correct codebase files and directories 
+that you want to upload.
 ```
 
 
