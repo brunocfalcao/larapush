@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Larapush API routes.
+ * All routes are protected using the 'client' Laravel Passport middleware
+ * to guarantee transaction security.
+ *
+ * Additionally they are also protected by the Larapush 'same-token' middleware meaning a custom token
+ * needs to be the same in the local dev computer and in the web server.
+ */
+
 // Request an access token request, and a connectivity test.
 Route::post('ping', PingController::class)->name('ping');
 

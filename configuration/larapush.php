@@ -5,21 +5,21 @@ use Brunocfalcao\Larapush\Utilities\ScriptType;
 return [
 
     /*
-     * Environment type:
-     * 'local' = Your local dev machine
-     * 'remote' = Your remote codebase server.
+     * Environment installation type:
+     * 'local' = On your local dev computer.
+     * 'remote' = On your web server.
      */
     'type' => env('LARAPUSH_TYPE', 'local'),
 
     /*
-     * Your remove server information group.
+     * Remote server information group.
      */
     'remote' => [
-        // Your remote server URL.
-        // Manually configured when you install larapush on your local computer.
+        // Your web server URL.
+        // Manually configured when you install larapush on your local dev computer.
         'url' => env('LARAPUSH_REMOTE_URL'),
 
-        // Your route prefix, default is <your-server-url>/larapush.
+        // Route prefix for all web server routes, default is <your-server-url>/larapush.
         'prefix' => '/larapush',
     ],
 
@@ -46,11 +46,12 @@ return [
         ],
     ],
 
-    // What's the codebase you want to upload to your remote server?
-    // Each selected folder will contain all the children sub-folders/files.
+    // What's the codebase you want to upload to your web server?
+    // You can add multiple values (files or folder paths).
+    // base_path() is the root path. No need to add a full physical path.
+    // Examples:
+    // 'database', 'app', 'app/User.php'
     'codebase' => [
-        'database',
-        'app/test.php',
     ],
 
     // Folder path that will store your transaction codebase folders.
@@ -61,6 +62,7 @@ return [
     /*
      * OAuth information + remote<->local token information.
      * Automatically filled on the remote server installation.
+     * Don't change. Used by the library.
      */
     'oauth' => [
         'client' => env('LARAPUSH_OAUTH_CLIENT'),
@@ -70,6 +72,7 @@ return [
     /*
      * Local / Remote token. Must be the same in both environments.
      * Automatically created on your local or remote server installations.
+     * Don't change. Used by the library.
      */
     'token' => env('LARAPUSH_TOKEN'),
 ];
