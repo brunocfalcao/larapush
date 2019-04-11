@@ -21,7 +21,7 @@ Larapush is a Laravel library that will allow you to push your codebase to your 
 
 ### Installation
 
-:exclamation: In order to generate your OAuth client and token, you need to first install Larapush on your web server:
+:exclamation: In order to generate your OAuth client and token, you need to first install Larapush on your web server!
 
 Enter on your web server and run the following commands:
 
@@ -33,3 +33,14 @@ composer require brunocfalcao/larapush --dev
 php artisan larapush:install-remote
 ```
 
+At the end, it will generate your command line that you will need to use to install it on your local dev computer.
+
+```bash
+ALL DONE!
+
+Please install Larapush on your local Laravel app and run the following artisan command:
+
+php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxz9bkPgQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
+```
+
+Copy+paste it somewhere, so you can use it later!
