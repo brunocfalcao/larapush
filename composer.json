@@ -19,9 +19,9 @@
     "require": {
         "php": "^7.2",
         "illuminate/support": "~5.8.0",
-        "chumper/zipper": "^1.0",
         "kitetail/zttp": "^0.4.0",
-        "sixlive/dotenv-editor": "^1.2"
+        "sixlive/dotenv-editor": "^1.2",
+        "nelexa/zip": "^3.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0"

@@ -49,18 +49,8 @@ return [
     // What's the codebase you want to upload to your remote server?
     // Each selected folder will contain all the children sub-folders/files.
     'codebase' => [
-        'folders' => [
-            'app',
-            // E.g.: 'app' or 'resources', as many as you want.
-        ],
-        'files' => [
-            // E.g.: 'database/factories/UserFactory.php' as many as you want.
-        ],
-        // What files/folders you want to skip when deploying the codebase?
-        // Configure this list on your server.
-        'blacklist' => [
-            '.env',
-        ],
+        'database',
+        'app/test.php'
     ],
 
     // Folder path that will store your transaction codebase folders.

@@ -2,11 +2,11 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Chumper\Zipper\Facades\Zipper;
+use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
-use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
+use PhpZip\ZipFile;
 
 final class Local
 {
@@ -75,10 +75,28 @@ final class LocalOperation
 
     public function CreateCodebaseZip(string $fqfilename) : void
     {
-        if (count(app('config')->get('larapush.codebase.folders')) == 0 && count(app('config')->get('larapush.codebase.files')) == 0) {
+        if (count(app('config')->get('larapush.codebase')) == 0) {
             throw new LocalException('No files or folders identified to upload. Please check your configuration file');
         }
 
+        $zip = new ZipFile();
+
+        collect(app('config')->get('larapush.codebase'))->each(function ($item) use (&$zip) {
+
+            if (is_dir(base_path($item))) {
+                $zip->addDirRecursive(base_path($item), $item);
+            }
+
+            if (is_file(base_path($item))) {
+                $zip->addFile(base_path($item), $item);
+            }
+        });
+
+        $zip->saveAsFile($fqfilename);
+
+        $zip->close();
+
+        /*
         $zip = Zipper::make($fqfilename);
 
         collect(app('config')->get('larapush.codebase.folders'))->each(function ($item) use (&$zip) {
@@ -95,6 +113,7 @@ final class LocalOperation
         });
 
         $zip->close();
+        */
     }
 
     public function uploadCodebase(string $transaction) : void
