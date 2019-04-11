@@ -70,10 +70,25 @@ Don't forget to update your larapush.php configuration file for the correct code
 that you want to upload.
 ```
 
-### Usage
+### Configuration
 
-All of your configuration is done on your larapush.php configuration file. Let's explore it.
+Done on your new larapush.php configuration file. Let's explore it.
 
-#### Type
+#### larapush.type
+No need to change this, it is automatically configured by the installers using .env keys that will be registered.
 
-abc
+#### larapush.environment
+If your web server environment name matches one of the ones specified here, then Larapush will ask you to confirm the upload each time you push your code. This will avoid you to upload your codebase to environments that you might not want to (like a production).
+
+#### larapush.remote
+No need to change these keys by default, unless you want to change the main root URL path, or force a web server URL.
+
+#### larapush.scripts (pre_scripts and post_scripts)
+You can specify actions to run before and after the code is deployed on your web server.
+For each, you can:
+- Run an Artisan command. E.g.: ['cache:clear', ScriptType::ARTISAN]
+
+
+
+
+
