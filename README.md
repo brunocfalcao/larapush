@@ -11,6 +11,7 @@ Larapush is a Laravel library that will allow you to push your codebase to your 
 
 - Client <-> Server communications using Laravel Passport OAuth Client Access Grant tokens.
 - Run pre-scripts and post-scripts that you define (artisan commands, invokable classes, or custom methods).
+- Stores all output from your pre-scripts and post-scripts in dump files on your web server.
 - Specify what codebase you want to upload (files, folders).
 - Keeps all of your uploaded codebase inside versioned folders on your storage path.
 - Asks for a confirmation in case you are uploading to sensitive environments (like production).
@@ -91,7 +92,20 @@ For each, you can:
 - Execute a specific object method: E.g.: ['MyClass@myMethod', ScriptType::CLASSMETHOD]
 - Execute a system shell commands: E.g.:"['composer dumpautoload', ScriptType::SHELLCMD]
 
-You can add as much as you want.
+You can add as much as you want. All outputs are stored inside your transaction folder (later to be explained).
+
+#### larapush.codebase
+Important part, where you can specify your codebase folders and files. Just add them as array values, E.g.:
+
+```php
+    'codebase' => [
+        'App', 'database', 'resources/views/file.blade.php', 'webpack.js'
+    ],
+```
+
+
+
+
 
 
 
