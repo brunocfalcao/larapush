@@ -2,11 +2,11 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
+use PhpZip\ZipFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use PhpZip\ZipFile;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
 
 final class Local
 {
@@ -82,7 +82,6 @@ final class LocalOperation
         $zip = new ZipFile();
 
         collect(app('config')->get('larapush.codebase'))->each(function ($item) use (&$zip) {
-
             if (is_dir(base_path($item))) {
                 $zip->addDirRecursive(base_path($item), $item);
             }

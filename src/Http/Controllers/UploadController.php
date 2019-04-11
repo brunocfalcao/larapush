@@ -3,8 +3,8 @@
 namespace Brunocfalcao\Larapush\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Brunocfalcao\Larapush\Utilities\Remote;
 use Illuminate\Support\Facades\Validator;
+use Brunocfalcao\Larapush\Utilities\Remote;
 use Brunocfalcao\Larapush\Utilities\CodebaseRepository;
 use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
 
