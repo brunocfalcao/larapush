@@ -33,7 +33,7 @@ final class LocalOperation
 
         $this->checkResponseStatus($response);
 
-        return (bool)$response->payload['prompt'];
+        return (bool) $response->payload['prompt'];
     }
 
     public function createRepository(string $transaction) : void

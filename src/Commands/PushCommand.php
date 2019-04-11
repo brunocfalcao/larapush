@@ -75,7 +75,7 @@ final class PushCommand extends InstallerBootstrap
 
         if ($prompt) {
             $this->bulkInfo(1);
-            if (!$this->confirm('ATTENTION! You are uploading your codebase to a reserved environment. Continue?')) {
+            if (! $this->confirm('ATTENTION! You are uploading your codebase to a reserved environment. Continue?')) {
                 exit();
             }
         }
