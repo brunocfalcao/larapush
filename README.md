@@ -70,5 +70,6 @@ Don't forget to update your larapush.php configuration file for the correct code
 that you want to upload.
 ```
 
+### Usage
 
-
+> All of your configuration is done on your larapush.php configuration file.
