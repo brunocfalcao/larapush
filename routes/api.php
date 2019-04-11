@@ -12,6 +12,9 @@
 // Request an access token request, and a connectivity test.
 Route::post('ping', PingController::class)->name('ping');
 
+// Runs environment check.
+Route::post('check-environment', CheckEnvironmentController::class)->name('pre-scripts');
+
 // Request a pre-check to the remote server.
 Route::post('prechecks', PreChecksController::class)->name('prechecks');
 

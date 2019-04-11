@@ -22,6 +22,20 @@ final class LocalOperation
 
     protected $zipFilename;
 
+    public function askRemoteToCheckEnvironment()
+    {
+        $response = ReSTCaller::asPost()
+                          ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                          ->withHeader('Accept', 'application/json')
+                          ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
+                          ->withPayload(['environments' => implode(',', app('config')->get('larapush.environment.reserved'))])
+                          ->call(larapush_remote_url('check-environment'));
+
+        $this->checkResponseStatus($response);
+
+        return (bool)$response->payload['prompt'];
+    }
+
     public function createRepository(string $transaction) : void
     {
         // Create a new transaction folder inside the larapush storage.

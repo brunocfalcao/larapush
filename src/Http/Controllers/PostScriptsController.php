@@ -16,11 +16,11 @@ final class PostScriptsController extends RemoteBaseController
         ]);
 
         if ($validator->fails()) {
-            return response_payload(false, ['message'=> $validator->errors()->first()], 201);
+            return response_payload(['message'=> $validator->errors()->first()], 201);
         }
 
         Remote::runPostScripts($request->input('transaction'));
 
-        return response_payload(true);
+        return response_payload();
     }
 }

@@ -11,6 +11,6 @@ final class PreChecksController extends RemoteBaseController
     {
         Remote::preChecks();
 
-        return response_payload(true);
+        return response_payload();
     }
 }

@@ -8,6 +8,6 @@ final class PingController extends RemoteBaseController
 {
     public function __invoke()
     {
-        return response_payload(true);
+        return response_payload();
     }
 }

@@ -11,6 +11,16 @@ return [
      */
     'type' => env('LARAPUSH_TYPE', 'local'),
 
+    /**
+     * Any environment defined here will prompt you to confirm before uploading
+     * your codebase to your web server, so you avoid deploying your codebase to
+     * specific environments, like production.
+     * You can pass several environments like: ['production', 'preproduction'].
+     */
+    'environment' => [
+        'reserved' => ['production']
+    ],
+
     /*
      * Remote server information group.
      */

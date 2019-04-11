@@ -19,7 +19,7 @@ final class UploadController extends RemoteBaseController
         ]);
 
         if ($validator->fails()) {
-            return response_payload(false, ['message'=> $validator->errors()->first()], 201);
+            return response_payload(['message'=> $validator->errors()->first()], 201);
         }
 
         $repository = (new CodebaseRepository())
@@ -29,6 +29,6 @@ final class UploadController extends RemoteBaseController
 
         Remote::storeRepository($repository);
 
-        return response_payload(true);
+        return response_payload();
     }
 }

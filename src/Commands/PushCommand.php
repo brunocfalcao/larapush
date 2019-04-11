@@ -13,7 +13,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected $signature = 'push';
 
-    protected $description = 'Pushes your codebase content to your remote environment';
+    protected $description = 'Pushes your codebase content to your web server';
 
     public function __construct()
     {
@@ -24,12 +24,15 @@ final class PushCommand extends InstallerBootstrap
     {
         parent::handle();
 
-        $this->steps = 8;
+        $this->steps = 9;
 
         $bar = $this->output->createProgressBar($this->steps);
         $bar->start();
 
         $this->runPreChecks();
+        $bar->advance();
+
+        $this->checkRemoteEnvironmentName();
         $bar->advance();
 
         $this->pingRemote();
@@ -57,6 +60,25 @@ final class PushCommand extends InstallerBootstrap
         $bar->finish();
 
         $this->bulkInfo(2, '*** All good! Codebase pushed to your remote server! ***', 1);
+    }
+
+    protected function checkRemoteEnvironmentName()
+    {
+        $prompt = false;
+        larapush_rescue(function () use (&$prompt) {
+            $prompt = Local::getAccessToken()
+                      ->askRemoteToCheckEnvironment();
+        }, function ($exception) {
+            $this->exception = $exception;
+            $this->gracefullyExit();
+        });
+
+        if ($prompt) {
+            $this->bulkInfo(1);
+            if (!$this->confirm('ATTENTION! You are uploading your codebase to a reserved environment. Continue?')) {
+                exit();
+            }
+        }
     }
 
     protected function createLocalRepository()
