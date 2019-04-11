@@ -34,8 +34,9 @@ composer require brunocfalcao/larapush --dev
 php artisan larapush:install-remote
 ```
 
-At the end, it will generate your command line that you will need to use to install it on your local dev computer.
+At the end, it will generate your command line that you will need to use to install it on your local computer.
 
+Like this example:
 ```bash
 ALL DONE!
 
@@ -45,3 +46,16 @@ php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxz9bkPgQw
 ```
 
 Copy+paste it somewhere, so you can use it later!
+
+On your local development computer, run the following commands:
+
+```bash
+composer require brunocfalcao/larapush --dev
+```
+
+Then, the copied line from your web server (this one is just an example):
+
+```bash
+php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxz9bkPgQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
+```
+
