@@ -27,4 +27,9 @@ You need to require the package on both your web server and your local dev machi
 composer require brunocfalcao/larapush --dev
 ```
 
-:exclamation: You need to first install Larapush on your web server!
+>In order to generate your OAuth client and token, you need to first install Larapush on your web server:
+
+```bash
+php artisan larapush:install-remote
+```
+
