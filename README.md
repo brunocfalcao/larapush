@@ -1,6 +1,7 @@
 <p align="center">
     <img src="http://assets.brunofalcao.me/larapush/github_logo.jpg" alt="Larapush logo" width="300">
 </p>
+<br/><br/>
 
 ## About Larapush
 
