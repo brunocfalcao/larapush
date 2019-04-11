@@ -72,4 +72,8 @@ that you want to upload.
 
 ### Usage
 
-> All of your configuration is done on your larapush.php configuration file.
+All of your configuration is done on your larapush.php configuration file. Let's explore it.
+
+#### Type
+
+abc
