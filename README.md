@@ -1,7 +1,7 @@
 <p align="center">
     <img src="http://assets.brunofalcao.me/larapush/github_logo.jpg" alt="Larapush logo" width="300">
 </p>
-<br/><br/>
+<br/>
 
 ## About Larapush
 
@@ -48,7 +48,7 @@ php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQ
 
 Copy+paste it somewhere, so you can use it later!
 
-On your local development computer, run the following commands:
+On your <b>local development computer</b>, run the following commands:
 
 ```bash
 composer require brunocfalcao/larapush --dev
