@@ -32,10 +32,10 @@ final class PushCommand extends InstallerBootstrap
         $this->runPreChecks();
         $bar->advance();
 
-        $this->checkRemoteEnvironmentName();
+        $this->pingRemote();
         $bar->advance();
 
-        $this->pingRemote();
+        $this->checkRemoteEnvironmentName();
         $bar->advance();
 
         $this->askRemoteForPreChecks();
