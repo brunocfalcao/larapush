@@ -2,10 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Chumper\Zipper\Facades\Zipper;
-use Illuminate\Support\Facades\Storage;
 use Brunocfalcao\Larapush\Concerns\CanRunProcesses;
 use Brunocfalcao\Larapush\Exceptions\RemoteException;
+use Illuminate\Support\Facades\Storage;
+use PhpZip\ZipFile;
 
 final class Remote
 {
@@ -30,7 +30,9 @@ final class RemoteOperation
     public function unzipCodebase(string $transaction) : void
     {
         if (Storage::disk('larapush')->exists("{$transaction}/codebase.zip")) {
-            Zipper::make(larapush_storage_path("{$transaction}/codebase.zip"))->extractTo(base_path(), app('config')->get('larapush.codebase.blacklist'), 2);
+            $zip = new ZipFile();
+            $zip->openFile(larapush_storage_path("{$transaction}/codebase.zip"))
+                ->extractTo(base_path());
         }
     }
 

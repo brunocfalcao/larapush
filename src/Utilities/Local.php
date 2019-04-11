@@ -95,25 +95,6 @@ final class LocalOperation
         $zip->saveAsFile($fqfilename);
 
         $zip->close();
-
-        /*
-        $zip = Zipper::make($fqfilename);
-
-        collect(app('config')->get('larapush.codebase.folders'))->each(function ($item) use (&$zip) {
-            if (! blank($item)) {
-                $zip->folder($item)->add(base_path($item));
-            }
-        });
-
-        collect(app('config')->get('larapush.codebase.files'))->each(function ($item) use (&$zip) {
-            if (! blank($item)) {
-                $fileData = pathinfo($item);
-                $zip->folder($fileData['dirname'])->add(base_path($item));
-            }
-        });
-
-        $zip->close();
-        */
     }
 
     public function uploadCodebase(string $transaction) : void
