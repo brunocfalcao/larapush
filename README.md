@@ -87,6 +87,11 @@ No need to change these keys by default, unless you want to change the main root
 You can specify actions to run before and after the code is deployed on your web server.
 For each, you can:
 - Run an Artisan command. E.g.: ['cache:clear', ScriptType::ARTISAN]
+- Execute an invokable method. E.g.: [MyClass::class, ScriptType::CLASSMETHOD]
+- Execute a specific object method: E.g.: ['MyClass@myMethod', ScriptType::CLASSMETHOD]
+- Execute a system shell commands: E.g.:"['composer dumpautoload', ScriptType::SHELLCMD]
+
+You can add as much as you want.
 
 
 
