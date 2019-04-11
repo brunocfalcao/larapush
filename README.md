@@ -59,3 +59,15 @@ Then, the copied line from your web server (this one is just an example):
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
 ```
 
+The installer will prompt to insert your URL. Just add it in the FQDN format (e.g.: https://www.nytimes.com).
+
+All done! If it goes well, you should see:
+
+```bash
+All good! Now you can push your codebase to your remote server!
+
+Don't forget to update your larapush.php configuration file for the correct codebase files and directories that you want to upload.
+```
+
+
+
