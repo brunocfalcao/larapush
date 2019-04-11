@@ -1,6 +1,6 @@
 <?php
 
-use Brunocfalcao\Larapush\Support\ScriptType;
+use Brunocfalcao\Larapush\Utilities\ScriptType;
 
 return [
 

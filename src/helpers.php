@@ -1,6 +1,6 @@
 <?php
 
-use Brunocfalcao\Larapush\Support\ResponsePayload;
+use Brunocfalcao\Larapush\Utilities\ResponsePayload;
 
 function ascii_title()
 {

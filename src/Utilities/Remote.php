@@ -1,6 +1,6 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Support;
+namespace Brunocfalcao\Larapush\Utilities;
 
 use Chumper\Zipper\Facades\Zipper;
 use Illuminate\Support\Facades\Storage;

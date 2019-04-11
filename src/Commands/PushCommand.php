@@ -2,8 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
-use Brunocfalcao\Larapush\Support\Local;
-use Brunocfalcao\Larapush\Support\Remote;
+use Brunocfalcao\Larapush\Utilities\Local;
+use Brunocfalcao\Larapush\Utilities\Remote;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
 

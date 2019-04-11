@@ -4,7 +4,7 @@ namespace Brunocfalcao\Larapush\Exceptions;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Brunocfalcao\Larapush\Support\ResponsePayload;
+use Brunocfalcao\Larapush\Utilities\ResponsePayload;
 
 final class ResponseException extends Exception
 {
