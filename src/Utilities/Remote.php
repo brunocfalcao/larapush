@@ -2,10 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
+use PhpZip\ZipFile;
+use Illuminate\Support\Facades\Storage;
 use Brunocfalcao\Larapush\Concerns\CanRunProcesses;
 use Brunocfalcao\Larapush\Exceptions\RemoteException;
-use Illuminate\Support\Facades\Storage;
-use PhpZip\ZipFile;
 
 final class Remote
 {
