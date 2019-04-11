@@ -50,7 +50,7 @@ return [
     // Each selected folder will contain all the children sub-folders/files.
     'codebase' => [
         'database',
-        'app/test.php'
+        'app/test.php',
     ],
 
     // Folder path that will store your transaction codebase folders.
