@@ -109,12 +109,11 @@ final class LocalOperation
 
         $zip = new ZipFile();
 
-        $startIdx = strlen(base_path())+1;
+        $startIdx = strlen(base_path()) + 1;
 
         collect(app('config')->get('larapush.codebase'))->each(function ($item) use (&$zip) {
-
             if (is_dir(base_path($item))) {
-                $files = glob_recursive(base_path($item . '/*'));
+                $files = glob_recursive(base_path($item.'/*'));
             }
 
             if (is_file(base_path($item))) {
@@ -122,7 +121,7 @@ final class LocalOperation
             }
 
             foreach ($files as $file) {
-                $normalizedPath = str_replace(DIRECTORY_SEPARATOR, '/', substr($file, strlen(base_path())+1));
+                $normalizedPath = str_replace(DIRECTORY_SEPARATOR, '/', substr($file, strlen(base_path()) + 1));
 
                 if (is_dir(base_path($file))) {
                     $zipFile->addEmptyDir(substr($file, $normalizedPath));
@@ -131,7 +130,7 @@ final class LocalOperation
                 if (is_file(base_path($file))) {
                     $zipFile->addFile($file, $normalizedPath);
                 }
-            };
+            }
         });
 
         $zip->saveAsFile($fqfilename);
