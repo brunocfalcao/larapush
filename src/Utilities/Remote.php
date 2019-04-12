@@ -45,9 +45,9 @@ final class RemoteOperation
                 $output = $this->runScript($item);
 
                 if ($output !== null) {
-                    Storage::disk('larapush')->append("{$transaction}/output_{$type}.json", "Command: {$item[0]}");
-                    Storage::disk('larapush')->append("{$transaction}/output_{$type}.json", 'Output:');
-                    Storage::disk('larapush')->append("{$transaction}/output_{$type}.json", "{$output}");
+                    Storage::disk('larapush')->append("{$transaction}/output_{$type}.log", "Command: {$item[0]}");
+                    Storage::disk('larapush')->append("{$transaction}/output_{$type}.log", 'Output:');
+                    Storage::disk('larapush')->append("{$transaction}/output_{$type}.log", "{$output}");
                 }
             });
         }
