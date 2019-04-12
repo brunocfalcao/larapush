@@ -2,10 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
-use Brunocfalcao\Larapush\Utilities\Local;
-use Brunocfalcao\Larapush\Utilities\Remote;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
+use Brunocfalcao\Larapush\Utilities\Local;
+use Brunocfalcao\Larapush\Utilities\Remote;
 
 final class PushCommand extends InstallerBootstrap
 {
@@ -23,6 +23,31 @@ final class PushCommand extends InstallerBootstrap
     public function handle()
     {
         parent::handle();
+
+        /*
+        dd(strlen(base_path()));
+
+        $files = glob_recursive(base_path('app/*'));
+
+        $zipFile = new ZipFile();
+
+        foreach ($files as $file) {
+            $this->info($file . ' | ' . (is_file($file) ? 'file' : '-') . ' | ' . (is_dir($file) ? 'dir' : '-'));
+            if (is_file($file)) {
+                $zipFile->addFile($file, str_replace(DIRECTORY_SEPARATOR, '/', substr($file, 32)));
+            }
+
+            if (is_dir($file)) {
+                $zipFile->addEmptyDir(substr($file, 32));
+            }
+        }
+
+        $zipFile->saveAsFile(storage_path('app/' . str_random(10) . '.zip'));
+
+        $zipFile->close();
+
+        dd('--');
+        */
 
         $this->steps = 9;
 
