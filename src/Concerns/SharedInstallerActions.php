@@ -33,9 +33,15 @@ trait SharedInstallerActions
 
     protected function gracefullyExit()
     {
-        $message = blank($this->exception->getMessage()) ?
+        $message = $this->exception->getMessage();
+
+        if ($this->exception instanceof \ErrorException) {
+            $message = $this->exception->getMessage() . ' (line ' . $this->exception->getLine() . ') on ' . $this->exception->getFile();
+        }
+
+        $message = blank($message) ?
                     'Ups. Looks like this step failed. Please check your Laravel logs for more information' :
-                    $this->exception->getMessage();
+                    $message;
 
         $this->error("An error occurred! => $message");
         exit();

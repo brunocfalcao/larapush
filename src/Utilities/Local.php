@@ -93,25 +93,12 @@ final class LocalOperation
             throw new LocalException('No files or folders identified to upload. Please check your configuration file');
         }
 
-        $files = glob_recursive(base_path('app/*'));
-
         $zipFile = new ZipFile();
-
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                $zipFile->addFile($file, str_replace(DIRECTORY_SEPARATOR, '/', substr($file, 32)));
-            }
-
-            if (is_dir($file)) {
-                $zipFile->addEmptyDir(substr($file, 32));
-            }
-        }
-
-        $zip = new ZipFile();
 
         $startIdx = strlen(base_path()) + 1;
 
-        collect(app('config')->get('larapush.codebase'))->each(function ($item) use (&$zip) {
+        collect(app('config')->get('larapush.codebase'))->each(function ($item) use (&$zipFile) {
+
             if (is_dir(base_path($item))) {
                 $files = glob_recursive(base_path($item.'/*'));
             }
@@ -121,21 +108,22 @@ final class LocalOperation
             }
 
             foreach ($files as $file) {
-                $normalizedPath = str_replace(DIRECTORY_SEPARATOR, '/', substr($file, strlen(base_path()) + 1));
+                $unixPath = str_replace(DIRECTORY_SEPARATOR, '/', substr($file, strlen(base_path()) + 1));
+                $unixBasePath = str_replace(DIRECTORY_SEPARATOR, '/', base_path($unixPath));
 
-                if (is_dir(base_path($file))) {
-                    $zipFile->addEmptyDir(substr($file, $normalizedPath));
+                if (is_dir(base_path($unixPath))) {
+                    $zipFile->addEmptyDir($unixPath);
                 }
 
-                if (is_file(base_path($file))) {
-                    $zipFile->addFile($file, $normalizedPath);
+                if (is_file(base_path($unixPath))) {
+                    $zipFile->addFile($unixBasePath, $unixPath);
                 }
             }
         });
 
-        $zip->saveAsFile($fqfilename);
+        $zipFile->saveAsFile($fqfilename);
 
-        $zip->close();
+        $zipFile->close();
     }
 
     public function uploadCodebase(string $transaction) : void
