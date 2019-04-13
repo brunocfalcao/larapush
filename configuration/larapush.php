@@ -48,7 +48,7 @@ return [
             ['cache:clear', ScriptType::ARTISAN],
             ['config:clear', ScriptType::ARTISAN],
             ['view:clear', ScriptType::ARTISAN],
-            ['route:clear', ScriptType::ARTISAN]
+            ['route:clear', ScriptType::ARTISAN],
         ],
     ],
 
