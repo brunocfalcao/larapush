@@ -48,7 +48,7 @@ Please install Larapush on your local Laravel app and run the following artisan 
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
 ```
 
-Copy+paste it somewhere, so you can use it later!
+Copy+paste <b>the one generated on your web server</b> it somewhere, so you can use it later!
 
 On your <b>local development computer</b>, run the following commands:
 
