@@ -43,16 +43,12 @@ return [
      */
     'scripts' => [
         'pre_scripts' => [
-            ['cache:clear', ScriptType::ARTISAN],
-            ['view:clear', ScriptType::ARTISAN],
-            /*
-            [MyClass::class, ScriptType::CLASSMETHOD],
-            ['MyClass@method', ScriptType::CLASSMETHOD],
-            ['composer update', ScriptType::SHELLCMD],
-            */
         ],
         'post_scripts' => [
+            ['cache:clear', ScriptType::ARTISAN],
+            ['config:clear', ScriptType::ARTISAN],
             ['view:clear', ScriptType::ARTISAN],
+            ['route:clear', ScriptType::ARTISAN]
         ],
     ],
 
@@ -70,8 +66,9 @@ return [
     ],
 
     /*
-     * OAuth information + remote<->local token information registered on your
-     * Laravel Passport tables.
+     * OAuth information + remote<->local token information.
+     * Automatically filled on the remote server installation.
+     * Don't change. Used by the library.
      */
     'oauth' => [
         'client' => env('LARAPUSH_OAUTH_CLIENT'),
@@ -80,7 +77,8 @@ return [
 
     /*
      * Local / Remote token. Must be the same in both environments.
-     * Automatically created on your local or web server installations.
+     * Automatically created on your local or remote server installations.
+     * Don't change. Used by the library.
      */
     'token' => env('LARAPUSH_TOKEN'),
 ];
