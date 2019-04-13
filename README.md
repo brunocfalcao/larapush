@@ -133,8 +133,6 @@ Each of the transaction that is created will then be stored with the same transa
 
 As example, you are pushing codebase and you see this line on your artisan command info:
 
-
-
 ```bash
 Creating local environment codebase repository (20190413-211644-GFKXN)...
 ```
