@@ -5,7 +5,7 @@
 
 ## About Larapush
 
-Larapush is a Laravel library that will allow you to push your codebase to your Laravel web server using a single artisan command: <b>artisan push</b>, using OAuth autorization to guarantee HTTP transactional security.
+Larapush is a Laravel library that allows you to upload your codebase to your Web Server using a single artisan command: <b>artisan push</b>.
 
 ### Features
 
