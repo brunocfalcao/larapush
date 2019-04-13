@@ -22,6 +22,7 @@ Larapush is a Laravel library that allows you to upload your codebase to your We
 Larapush was developed taking security very seriously. At the end, anyone that knows your endpoint would be able to upload a malicious codebase to your web server. That's why Larapush uses OAuth client grant access tokens for each of the HTTP transactions that are handshaken between your web server and your local computer. At the end of the HTTP transaction, the client access token is marked as used, so it cannot be used again.
 
 When you install Larapush on your web server, it installs Laravel Passport and generates a specific client token that will be unique between your web server and your local computer. Henceforth any transaction between your local computer and your web server needs to first request a new client grant token and then use that token on the respective HTTP call. Additionally there is also a token that is passed on each request that needs to be the same between your local computer and the web server. If not, the transaction aborts in error.
+<br/>
 All of this is done automatically each time you push your codebase. Nice and smooth!
 
 ### Requirements
