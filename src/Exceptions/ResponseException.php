@@ -53,17 +53,6 @@ final class ResponseException extends Exception
     // Needs to compute the best readable message from the available error data.
     public function message()
     {
-        /*
-         * HTTP xxx
-         * isOk = false
-         * instance.status
-         * instance.reasonPhrase
-         * json.message
-         * json.exception
-         * json.file
-         * json.line
-         */
-
         return "Larapush Response Exception
                 HTTP {$this->status} {$this->reason}
                 {$this->message}";
