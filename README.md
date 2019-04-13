@@ -73,6 +73,13 @@ Don't forget to update your larapush.php configuration file for the correct code
 that you want to upload.
 ```
 
+### Usage
+Henceforth all you have to do is to run the command:
+```bash
+php artisan push
+```
+It will upload your codebase that you define on your larapush.php configuration file (larapush.codebase) and the scripts that you also specified (larapush.scripts).
+
 ### Configuration
 
 A new larapush.php configuration file is created. Let's explore it.
