@@ -139,5 +139,7 @@ Creating local environment codebase repository (20190413-211644-GFKXN)...
 [...]
 ```
 
-That code between parenthesis is the transaction code. You can later revisit the folder and inspect what codebase was uploaded.
+That code between parenthesis is the transaction code.
+
+In your web server, it also keeps the transaction code folders in your storage (storage/app/larapush by default), but it also adds 2 new files: 
 
