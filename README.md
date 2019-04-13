@@ -141,7 +141,13 @@ Creating local environment codebase repository (20190413-211644-GFKXN)...
 [...]
 ```
 
-That code between parenthesis is the transaction code.
+That code between parenthesis is the transaction code. If you navigate to your storage-path/app/larapush you will see all the transaction folders listed there. Each of those correspond to a push you have made to your web server.
 
-In your web server, it also keeps the transaction code folders in your storage (storage/app/larapush by default), but it also adds 2 new files: 
+In your web server it works exactly the same way. Additionally on each of the folder you might see also 2 files:
+```bash
+output_pre_scripts.log
+output_post_scripts.log
+```
+Those are the console exports of the scripts that ran on each of your codebase push. So, in case you are running scripts you will see your console output there. Nice, heim? :)
+
 
