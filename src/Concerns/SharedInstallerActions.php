@@ -36,7 +36,7 @@ trait SharedInstallerActions
         $message = $this->exception->getMessage();
 
         if ($this->exception instanceof \ErrorException) {
-            $message = $this->exception->getMessage() . ' (line ' . $this->exception->getLine() . ') on ' . $this->exception->getFile();
+            $message = $this->exception->getMessage().' (line '.$this->exception->getLine().') on '.$this->exception->getFile();
         }
 
         $message = blank($message) ?
