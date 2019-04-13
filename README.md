@@ -48,7 +48,7 @@ Please install Larapush on your local Laravel app and run the following artisan 
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
 ```
 
-Copy+paste <b>the one generated on your web server</b> it somewhere, so you can use it later!
+Copy+paste the one generated on your web server so you can use it later on your local installation.
 
 On your <b>local development computer</b>, run the following commands:
 
@@ -62,7 +62,7 @@ Then, the copied line from your web server (this one is just an example):
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
 ```
 
-The installer will prompt to insert your URL. Just add it in the FQDN format (e.g.: https://www.nytimes.com).
+The installer will prompt to insert your URL. Just add it in the FQDN format (e.g.: https://www.johnsmith.com).
 
 All done! If it goes well, you should see:
 
@@ -75,7 +75,7 @@ that you want to upload.
 
 ### Configuration
 
-Done on your new larapush.php configuration file. Let's explore it.
+A new larapush.php configuration file is created. Let's explore it.
 
 #### larapush.type
 No need to change this, it is automatically configured by the installers using .env keys that will be registered.
