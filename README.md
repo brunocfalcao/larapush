@@ -65,9 +65,9 @@ The installer will prompt to insert your URL. Just add it in the FQDN format (e.
 All done! If it goes well, you should see:
 
 ```bash
-All good! Now you can push your codebase to your remote server!
+All good! Now you can push your codebase to your web server!
 
-Don't forget to update your larapush.php configuration file for the correct codebase files and directories 
+Don't forget to update your larapush.php configuration file for the correct codebase files and directories
 that you want to upload.
 ```
 

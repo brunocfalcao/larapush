@@ -24,31 +24,6 @@ final class PushCommand extends InstallerBootstrap
     {
         parent::handle();
 
-        /*
-        dd(strlen(base_path()));
-
-        $files = glob_recursive(base_path('app/*'));
-
-        $zipFile = new ZipFile();
-
-        foreach ($files as $file) {
-            $this->info($file . ' | ' . (is_file($file) ? 'file' : '-') . ' | ' . (is_dir($file) ? 'dir' : '-'));
-            if (is_file($file)) {
-                $zipFile->addFile($file, str_replace(DIRECTORY_SEPARATOR, '/', substr($file, 32)));
-            }
-
-            if (is_dir($file)) {
-                $zipFile->addEmptyDir(substr($file, 32));
-            }
-        }
-
-        $zipFile->saveAsFile(storage_path('app/' . str_random(10) . '.zip'));
-
-        $zipFile->close();
-
-        dd('--');
-        */
-
         $this->steps = 9;
 
         $bar = $this->output->createProgressBar($this->steps);
@@ -66,9 +41,9 @@ final class PushCommand extends InstallerBootstrap
         $this->askRemoteForPreChecks();
         $bar->advance();
 
-        // The repository code generated in this moment is the PK for all the next transactions.
         $this->transaction = generate_transaction_code();
 
+        // Each transaction folder is stored inside storage_path('app/larapush').
         $this->createLocalRepository();
         $bar->advance();
 
@@ -84,7 +59,7 @@ final class PushCommand extends InstallerBootstrap
         $this->runPostScripts();
         $bar->finish();
 
-        $this->bulkInfo(2, '*** All good! Codebase pushed to your remote server! ***', 1);
+        $this->bulkInfo(2, '*** All good! Codebase pushed to your web server! ***', 1);
     }
 
     protected function checkRemoteEnvironmentName()
@@ -133,7 +108,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected function deploy()
     {
-        $this->bulkInfo(2, 'Unpacking your codebase on your remote server...', 1);
+        $this->bulkInfo(2, 'Unpacking your codebase on your web server...', 1);
 
         larapush_rescue(function () {
             Local::getAccessToken()
@@ -172,7 +147,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected function askRemoteForPreChecks()
     {
-        $this->bulkInfo(2, 'Asking remote server to make its pre-checks...', 1);
+        $this->bulkInfo(2, 'Asking web server to make its pre-checks...', 1);
 
         larapush_rescue(function () {
             Local::getAccessToken()
@@ -185,7 +160,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected function pingRemote()
     {
-        $this->bulkInfo(2, 'Checking OAuth & remote server connectivity...', 1);
+        $this->bulkInfo(2, 'Checking OAuth & web server connectivity...', 1);
 
         larapush_rescue(function () {
             Local::getAccessToken()

@@ -70,9 +70,8 @@ return [
     ],
 
     /*
-     * OAuth information + remote<->local token information.
-     * Automatically filled on the remote server installation.
-     * Don't change. Used by the library.
+     * OAuth information + remote<->local token information registered on your
+     * Laravel Passport tables.
      */
     'oauth' => [
         'client' => env('LARAPUSH_OAUTH_CLIENT'),
@@ -81,8 +80,7 @@ return [
 
     /*
      * Local / Remote token. Must be the same in both environments.
-     * Automatically created on your local or remote server installations.
-     * Don't change. Used by the library.
+     * Automatically created on your local or web server installations.
      */
     'token' => env('LARAPUSH_TOKEN'),
 ];

@@ -44,7 +44,7 @@ final class InstallLocalCommand extends InstallerBootstrap
 
         $this->info('');
         $this->url = $this->askAndValidate(
-            'What is your remote server url (E.g.: https://www.johnsmith.com) ?',
+            'What is your web server url (E.g.: https://www.johnsmith.com) ?',
             'required|url'
         );
 
@@ -77,7 +77,7 @@ final class InstallLocalCommand extends InstallerBootstrap
 
     protected function showLastResumedInformation()
     {
-        $this->bulkInfo(2, 'All good! Now you can push your codebase to your remote server!', 1);
+        $this->bulkInfo(2, 'All good! Now you can push your codebase to your web server!', 1);
         $this->info("Don't forget to update your larapush.php configuration file for the correct codebase files and directories that you want to upload.");
     }
 }

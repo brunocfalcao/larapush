@@ -15,7 +15,7 @@ Route::post('ping', PingController::class)->name('ping');
 // Runs environment check.
 Route::post('check-environment', CheckEnvironmentController::class)->name('pre-scripts');
 
-// Request a pre-check to the remote server.
+// Request a pre-check to the web server.
 Route::post('prechecks', PreChecksController::class)->name('prechecks');
 
 // Uploads codebase (zip) to remote environment.
