@@ -5,19 +5,20 @@
 
 ## About Larapush
 
-Larapush is a Laravel library that will allow you to push your codebase to your Laravel app web server using a single artisan command: <b>artisan push</b>, using OAuth autorization to guarantee transactional security.
+Larapush is a Laravel library that will allow you to push your codebase to your Laravel web server using a single artisan command: <b>artisan push</b>, using OAuth autorization to guarantee HTTP transactional security.
 
 ### Features
 
 - Client <-> Server communications using Laravel Passport OAuth Client Access Grant tokens.
-- Run pre-scripts and post-scripts that you define (artisan commands, invokable classes, or custom methods).
-- Stores all output from your pre-scripts and post-scripts in dump files on your web server.
-- Specify what codebase you want to upload (files, folders).
+- Can run pre-scripts and post-scripts that you define (artisan commands, invokable classes, or custom methods).
+- Stores all output from your pre-scripts and post-scripts in folders inside your storage path.
+- Allows you to specify what codebase you want to upload (files, folders).
 - Keeps all of your uploaded codebase inside versioned folders on your storage path.
 - Asks for a confirmation in case you are uploading to sensitive environments (like production).
+- Works on both UNIX and Windows web server operating systems.
 
 ### Requirements
-> Database needed in your <b>web server</b> (used by Laravel Passport) <br>
+> Database is needed only your <b>web server</b> (used by Laravel Passport) <br>
 > PHP 7.2+ <br/>
 > Laravel 5.8+ <br/>
 
