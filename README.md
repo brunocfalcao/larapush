@@ -37,7 +37,7 @@ All of this is done automatically each time you push your codebase. Nice and smo
 Enter on your web server and run the following commands:
 
 ```bash
-composer require brunocfalcao/larapush --dev
+composer require brunocfalcao/larapush
 ```
 
 ```bash
@@ -60,7 +60,7 @@ Copy+paste the one generated on your web server so you can use it later on your 
 On your <b>local development computer</b>, run the following commands:
 
 ```bash
-composer require brunocfalcao/larapush --dev
+composer require brunocfalcao/larapush
 ```
 
 Then, the copied line from your web server (this one is just an example):
