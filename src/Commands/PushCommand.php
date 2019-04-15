@@ -124,8 +124,8 @@ final class PushCommand extends InstallerBootstrap
         $this->bulkInfo(2, 'Running your pre-scripts before unpacking your codebase (if they exist)...', 1);
 
         larapush_rescue(function () {
-            $response = Local::getAccessToken()
-                              ->runPreScripts($this->transaction);
+            Local::getAccessToken()
+                 ->runPreScripts($this->transaction);
         }, function ($exception) {
             $this->exception = $exception;
             $this->gracefullyExit();

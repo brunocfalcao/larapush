@@ -19,8 +19,6 @@ final class PreScriptsController extends RemoteBaseController
             return response_payload(['message'=> $validator->errors()->first()], 403);
         }
 
-        $responsePayload = response_payload();
-
         Remote::runPreScripts($request->input('transaction'));
 
         return response_payload();

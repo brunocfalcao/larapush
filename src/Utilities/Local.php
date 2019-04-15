@@ -95,8 +95,6 @@ final class LocalOperation
 
         $zipFile = new ZipFile();
 
-        $startIdx = strlen(base_path()) + 1;
-
         collect(app('config')->get('larapush.codebase'))->each(function ($item) use (&$zipFile) {
             if (is_dir(base_path($item))) {
                 $files = glob_recursive(base_path($item.'/*'));
