@@ -47,13 +47,7 @@ php artisan larapush:install-remote
 At the end, it will generate your command line that you will need to use to install it on your local computer.
 
 Like this example:
-```bash
-ALL DONE!
-
-Please install Larapush on your local Laravel app and run the following artisan command:
-
-php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
-```
+![Installation completed](https://assets.brunofalcao.me/larapush/img1.jpg)
 
 Copy+paste the one generated on your web server so you can use it later on your local installation.
 
