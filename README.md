@@ -26,7 +26,7 @@ When you install Larapush on your web server, it installs Laravel Passport and g
 All of this is done automatically each time you push your codebase. Nice and smooth!
 
 ### Requirements
-> Database is needed only your <b>web server</b> (used by Laravel Passport) <br>
+> Database is only needed in your <b>web server</b> (Laravel Passport will be installed) <br>
 > PHP 7.2+ <br/>
 > Laravel 5.8+ <br/>
 
@@ -47,13 +47,7 @@ php artisan larapush:install-remote
 At the end, it will generate your command line that you will need to use to install it on your local computer.
 
 Like this example:
-```bash
-ALL DONE!
-
-Please install Larapush on your local Laravel app and run the following artisan command:
-
-php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
-```
+![Install on your web server](https://assets.brunofalcao.me/larapush/install-remote.gif)
 
 Copy+paste the one generated on your web server so you can use it later on your local installation.
 
@@ -63,11 +57,12 @@ On your <b>local development computer</b>, run the following commands:
 composer require brunocfalcao/larapush
 ```
 
-Then, the copied line from your web server (this one is just an example):
-
 ```bash
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
 ```
+
+Like this example:
+![Install on your local computer](https://assets.brunofalcao.me/larapush/install-local.gif)
 
 The installer will prompt to insert your URL. Just add it in the FQDN format (e.g.: https://www.johnsmith.com).
 
