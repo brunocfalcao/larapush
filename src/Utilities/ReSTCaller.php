@@ -22,7 +22,6 @@ final class RequestPayload
     private $payload = [];
     private $headers = [];
     private $verb = self::HTTP_VERB_GET;
-    private $accessToken = null;
 
     public function __construct()
     {
