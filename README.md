@@ -57,7 +57,8 @@ On your <b>local development computer</b>, run the following commands:
 composer require brunocfalcao/larapush
 ```
 
-Then, the copied line from your web server (this one is just an example):
+Then use the line given from your web server, like this:
+![Install on your local computer](https://assets.brunofalcao.me/larapush/install-local.gif)
 
 ```bash
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
