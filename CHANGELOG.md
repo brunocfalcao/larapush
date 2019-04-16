@@ -1,5 +1,5 @@
 # Changelog
 
-## 0.0.1 - 201X-XX-XX
+## 0.1.0 - 2019-04-14
 
-[x] Initial release
+[x] Initial release, for beta testing
