@@ -83,7 +83,6 @@ php artisan push
 It will upload your codebase that you define on your larapush.php configuration file (larapush.codebase) and the scripts that you also specified (larapush.scripts).
 
 ### Configuration
-
 A new larapush.php configuration file is created. Let's explore it.
 
 #### larapush.type
@@ -145,4 +144,8 @@ output_post_scripts.log
 ```
 Those are the console exports of the scripts that ran on each of your codebase push. So, in case you are running scripts you will see your console output there. Nice, heim? :)
 
+### Security
+If you find any security related issue please send me a direct email.
 
+## License
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
