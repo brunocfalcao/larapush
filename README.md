@@ -4,8 +4,8 @@
 <br/>
 <p align="center">
   <a href="https://packagist.org/packages/brunocfalcao/larapush"><img src="https://poser.pugx.org/brunocfalcao/larapush/d/total.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/nunomaduro/collision"><img src="https://poser.pugx.org/brunocfalcao/larapush/v/stable.svg" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/nunomaduro/collision"><img src="https://poser.pugx.org/brunocfalcao/larapush/license.svg" alt="License"></a>
+  <a href="https://packagist.org/packages/brunocfalcao/larapush"><img src="https://poser.pugx.org/brunocfalcao/larapush/v/stable.svg" alt="Latest Stable Version"></a>
+  <a href="https://packagist.org/packages/brunocfalcao/larapush"><img src="https://poser.pugx.org/brunocfalcao/larapush/license.svg" alt="License"></a>
 </p>
 
 ## About Larapush
