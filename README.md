@@ -8,8 +8,6 @@
   <a href="https://packagist.org/packages/brunocfalcao/larapush"><img src="https://poser.pugx.org/brunocfalcao/larapush/license.svg" alt="License"></a>
 </p>
 
-## About Larapush
-
 Larapush is a Laravel library that allows you to upload your codebase to your Web Server using a single artisan command:
 <p align="center"><b>php artisan push</b></p>
 
