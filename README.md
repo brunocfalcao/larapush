@@ -54,7 +54,7 @@ At the end, it will generate your command line that you will need to use to inst
 Like this example:
 ![Install on your web server](https://assets.brunofalcao.me/larapush/install-remote.gif)
 
-Copy+paste the one generated on your web server so you can use it later on your local installation.
+:exclamation: Copy+paste the one generated on your web server so you can use it later on your local installation.
 
 On your <b>local development computer</b>, run the following commands:
 
