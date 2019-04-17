@@ -8,7 +8,7 @@
   <a href="https://packagist.org/packages/brunocfalcao/larapush"><img src="https://poser.pugx.org/brunocfalcao/larapush/license.svg" alt="License"></a>
 </p>
 
-<p align="center">Deploy your codebase to your web server using a single Laravel Artisan command:<br>
+<p align="center">Deploy your codebase to your web server using a new Laravel Artisan command<br><br>
 <b>php artisan push</b></p>
 
 ### Features
