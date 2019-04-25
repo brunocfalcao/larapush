@@ -2,7 +2,6 @@
 
 namespace Brunocfalcao\Larapush\Tests;
 
-use Brunocfalcao\Larapush\Tests\TestCase;
 use PhpZip\ZipFile;
 
 class LocalEnvironmentTest extends TestCase
@@ -17,7 +16,6 @@ class LocalEnvironmentTest extends TestCase
          * Asserts if the files inside the zip are the same (and same structure)
          * as the ones from the assets folder.
          */
-
         $zipFile = new ZipFile();
 
         $this->assertTrue(true);
