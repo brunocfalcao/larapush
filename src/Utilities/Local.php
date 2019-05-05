@@ -96,7 +96,6 @@ final class LocalOperation
         $zipFile = new ZipFile();
 
         collect(app('config')->get('larapush.codebase'))->each(function ($item) use (&$zipFile) {
-
             if (is_dir(base_path($item))) {
                 $files = glob_recursive(base_path($item.'/*'));
             }
@@ -220,6 +219,6 @@ class AccessToken
 
     public function __construct(int $expiresIn, string $token)
     {
-        list($this->expiresIn, $this->token) = [$expiresIn, $token];
+        [$this->expiresIn, $this->token] = [$expiresIn, $token];
     }
 }
