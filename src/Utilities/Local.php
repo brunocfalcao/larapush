@@ -109,8 +109,6 @@ final class LocalOperation
                 $unixPath = str_replace(DIRECTORY_SEPARATOR, '/', substr($file, strlen(base_path()) + 1));
                 $unixBasePath = str_replace(DIRECTORY_SEPARATOR, '/', base_path($unixPath));
 
-                dd(base_path($unixPath));
-
                 if (is_dir(base_path($unixPath))) {
                     $zipFile->addEmptyDir($unixPath);
                 }

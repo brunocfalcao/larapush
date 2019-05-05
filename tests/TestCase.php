@@ -25,7 +25,7 @@ abstract class TestCase extends OrchestraTestCase
 
         $app['config']->set(
             'larapush.storage.path',
-            'disk'
+            base_path('disk')
         );
 
         $app['config']->set(

@@ -1,0 +1,1 @@
+{"pre_scripts":[],"post_scripts":[["cache:clear","artisan"],["config:clear","artisan"],["view:clear","artisan"],["route:clear","artisan"]]}
