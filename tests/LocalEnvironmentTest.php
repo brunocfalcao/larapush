@@ -3,7 +3,6 @@
 namespace Brunocfalcao\Larapush\Tests;
 
 use Brunocfalcao\Larapush\Utilities\Local;
-use PhpZip\ZipFile;
 
 class LocalEnvironmentTest extends TestCase
 {
