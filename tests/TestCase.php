@@ -21,6 +21,23 @@ abstract class TestCase extends OrchestraTestCase
 
     public function getEnvironmentSetUp($app)
     {
-        //$app['config']->set('auth.providers.users.model', User::class);
+        $app->setBasePath(__DIR__);
+
+        $app['config']->set(
+            'larapush.storage.path',
+            'disk'
+        );
+
+        $app['config']->set(
+            'larapush.codebase',
+            ['codebase']
+        );
+
+        $app['config']->set('filesystems.disks', [
+            'larapush' => [
+                'driver' => 'local',
+                'root' => $app['config']->get('larapush.storage.path'),
+            ],
+        ]);
     }
 }

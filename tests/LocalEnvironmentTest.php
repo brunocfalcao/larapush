@@ -2,6 +2,7 @@
 
 namespace Brunocfalcao\Larapush\Tests;
 
+use Brunocfalcao\Larapush\Utilities\Local;
 use PhpZip\ZipFile;
 
 class LocalEnvironmentTest extends TestCase
@@ -9,14 +10,9 @@ class LocalEnvironmentTest extends TestCase
     /**
      * @test
      */
-    public function assertZipCreation()
+    public function assertLocalCreateTransaction()
     {
-        /**
-         * Creates a zip file with the content of the tests/assets.
-         * Asserts if the files inside the zip are the same (and same structure)
-         * as the ones from the assets folder.
-         */
-        $zipFile = new ZipFile();
+        Local::createRepository(generate_transaction_code());
 
         $this->assertTrue(true);
     }
