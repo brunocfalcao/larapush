@@ -15,15 +15,15 @@ class LocalEnvironmentTest extends TestCase
         Local::createRepository($transaction);
 
         // Verify if local repository was created, along with the runbook.json and the codebase.zip file.
-        $transactionRepository = app('config')->get('larapush.storage.path') . '/' . $transaction;
+        $transactionRepository = app('config')->get('larapush.storage.path').'/'.$transaction;
 
         // Directory exists?
-        if (!is_dir($transactionRepository)) {
+        if (! is_dir($transactionRepository)) {
             return $this->fail();
         }
 
         // codebase.zip and runbook.json exists?
-        if (!is_file("$transactionRepository/codebase.zip") || !is_file("$transactionRepository/runbook.json")) {
+        if (! is_file("$transactionRepository/codebase.zip") || ! is_file("$transactionRepository/runbook.json")) {
             return $this->fail();
         }
 
