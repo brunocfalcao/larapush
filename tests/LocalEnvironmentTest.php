@@ -11,6 +11,8 @@ class LocalEnvironmentTest extends TestCase
      */
     public function assertLocalCreateTransaction()
     {
+        $this->artisan('larapush:install-remote');
+
         $transaction = generate_transaction_code();
         Local::createRepository($transaction);
 

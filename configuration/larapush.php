@@ -1,6 +1,7 @@
 <?php
 
 use Brunocfalcao\Larapush\Utilities\ScriptType;
+use Brunocfalcao\Larapush\Utilities\SelectionType;
 
 return [
 
@@ -58,6 +59,20 @@ return [
     // Examples:
     // 'database', 'app', 'app/User.php'
     'codebase' => [
+    ],
+
+    // Defines the type of file selection to add to your codebase repository.
+    // SelectionType::ALL => All files/folders will be added to the repository.
+    // SelectionType::NEWER => Only new or updated files will be added to the repository, comparing
+    // with the last repository that was created. If there was no repository, it will be considered as ::ALL.
+    // SelectionType::CHANGED => Only files that were updated will be added to the repository. New files will not
+    // be added.
+    'file_selection' => SelectionType::ALL,
+
+    // Any file/folder path added to this configuration key will be skipped if present on the files to be uploaded
+    // to the web server.
+    'blacklist' => [
+        '.env'
     ],
 
     // Folder path that will store your transaction codebase folders.
