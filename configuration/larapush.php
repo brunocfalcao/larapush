@@ -72,7 +72,7 @@ return [
     // Any file/folder path added to this configuration key will be skipped if present on the files to be uploaded
     // to the web server.
     'blacklist' => [
-        '.env'
+        '.env',
     ],
 
     // Folder path that will store your transaction codebase folders.
