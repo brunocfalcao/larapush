@@ -2,17 +2,12 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
+use PhpZip\ZipFile;
+use PhpZip\Model\ZipInfo;
+use Illuminate\Support\Carbon;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
-use Brunocfalcao\Larapush\Utilities\Local;
-use Brunocfalcao\Larapush\Utilities\Remote;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Storage;
-use PhpZip\Model\ZipInfo;
-use PhpZip\ZipFile;
-use Symfony\Component\Finder\Finder;
 
 final class TestCommand extends InstallerBootstrap
 {
@@ -31,7 +26,7 @@ final class TestCommand extends InstallerBootstrap
     {
         parent::handle();
 
-        /**
+        /*
          * Load a package of files.
          */
 
@@ -46,7 +41,6 @@ final class TestCommand extends InstallerBootstrap
 
         // Remove the blacklist resources from the codebase resources.
         $codebase = $codebase->reject(function ($resource) use ($blacklist) {
-
             $exists = false;
 
             $blacklist->each(function ($item) use (&$exists, $resource) {
@@ -63,9 +57,9 @@ final class TestCommand extends InstallerBootstrap
         // If exists, open the zip file, and compare with the files we have.
         if ($latestFolder) {
             $latestCodebase = new \PhpZip\ZipFile();
-            $latestCodebase->openFile(app('config')->get('filesystems.disks.larapush.root') . '/' . $latestFolder . '/codebase.zip');
+            $latestCodebase->openFile(app('config')->get('filesystems.disks.larapush.root').'/'.$latestFolder.'/codebase.zip');
 
-            dd(app('config')->get('filesystems.disks.larapush.root') . '/' . $latestFolder . '/codebase.zip');
+            dd(app('config')->get('filesystems.disks.larapush.root').'/'.$latestFolder.'/codebase.zip');
 
             $zip = $this->getFileResourcesFromZip($latestCodebase);
 
@@ -80,10 +74,8 @@ final class TestCommand extends InstallerBootstrap
 
             // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
             $codebase->reject(function ($resource) use ($zip) {
-
                 $toRemove = false;
                 $zip->each(function ($item) use (&$toRemove, $resource) {
-
                     dd($item->relativePath(), $resource->relativePath());
 
                     if ($item->relativePath() == $resource->relativePath()) {
@@ -135,7 +127,6 @@ final class TestCommand extends InstallerBootstrap
         $files = collect();
 
         collect($relativePaths)->each(function ($item) use (&$files) {
-
             if (is_dir(base_path($item))) {
                 $files = $files->merge(glob_recursive(base_path($item.'/*')));
             }
