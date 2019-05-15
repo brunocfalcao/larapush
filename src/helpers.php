@@ -1,6 +1,7 @@
 <?php
 
 use Brunocfalcao\Larapush\Utilities\ResponsePayload;
+use Illuminate\Support\Carbon;
 
 function ascii_title()
 {
@@ -110,4 +111,14 @@ function glob_recursive($pattern, $flags = 0)
     }
 
     return $files;
+}
+
+function unix_separator_path($path)
+{
+    return str_replace(DIRECTORY_SEPARATOR, '/', $path);
+}
+
+function timestamp_to_carbon($timestamp)
+{
+    return Carbon::createFromTimestamp($timestamp);
 }

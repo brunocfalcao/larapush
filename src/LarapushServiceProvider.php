@@ -2,13 +2,14 @@
 
 namespace Brunocfalcao\Larapush;
 
-use Laravel\Passport\Passport;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
-use Brunocfalcao\Larapush\Commands\PushCommand;
 use Brunocfalcao\Larapush\Commands\InstallLocalCommand;
 use Brunocfalcao\Larapush\Commands\InstallRemoteCommand;
+use Brunocfalcao\Larapush\Commands\PushCommand;
+use Brunocfalcao\Larapush\Commands\TestCommand;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials;
+use Laravel\Passport\Passport;
 
 final class LarapushServiceProvider extends ServiceProvider
 {
@@ -66,6 +67,7 @@ final class LarapushServiceProvider extends ServiceProvider
             InstallRemoteCommand::class,
             InstallLocalCommand::class,
             PushCommand::class,
+            TestCommand::class
         ]);
 
         app('router')->aliasMiddleware(
