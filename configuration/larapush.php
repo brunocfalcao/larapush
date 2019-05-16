@@ -63,14 +63,12 @@ return [
 
     // Defines the type of file selection to add to your codebase repository.
     // SelectionType::ALL => All files/folders will be added to the repository.
-    // SelectionType::NEWER => Only new or updated files will be added to the repository, comparing
-    // with the last repository that was created. If there was no repository, it will be considered as ::ALL.
-    // SelectionType::CHANGED => Only files that were updated will be added to the repository. New files will not
-    // be added.
+    // SelectionType::CHANGED => Only files that were updated or are new will be added to the repository.
     'file_selection' => SelectionType::ALL,
 
     // Any file/folder path added to this configuration key will be skipped if present on the files to be uploaded
     // to the web server.
+    // Attention:: The paths are case sensitive!
     'blacklist' => [
         '.env',
     ],

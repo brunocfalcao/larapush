@@ -31,55 +31,44 @@ final class TestCommand extends InstallerBootstrap
          * Load a package of files.
          */
 
-        $this->info('starting...');
-
         if (count(app('config')->get('larapush.codebase')) == 0) {
             throw new LocalException('No files or folders identified to upload. Please check your configuration file');
         }
 
         $zipFile = new ZipFile();
 
-        $this->info('creating codebase resources...');
-        $codebase = $this->getFileResources(app('config')->get('larapush.codebase'));
-
-        $this->info('creating blacklist resources...');
+        $codebase  = $this->getFileResources(app('config')->get('larapush.codebase'));
         $blacklist = $this->getFileResources(app('config')->get('larapush.blacklist'));
 
-        $this->info('removing blacklist resources...');
         // Remove the blacklist resources from the codebase resources.
         $codebase = $codebase->reject(function ($resource) use ($blacklist) {
             $exists = false;
 
             $blacklist->each(function ($item) use (&$exists, $resource) {
+
                 if ($item->realPath() == $resource->realPath()) {
                     $exists = true;
-                }
+                };
             });
 
             return $exists;
         })->values();
 
-        $this->info('getting last transaction folder...');
         $latestFolder = $this->getLatestTransactionFolderName();
-
-        $this->info('Latest codebase folder - '.$latestFolder);
 
         // If exists, open the zip file, and compare with the files we have.
         if ($latestFolder) {
             $latestCodebase = new \PhpZip\ZipFile();
-            $latestCodebase->openFile(app('config')->get('filesystems.disks.larapush.root').'/'.$latestFolder.'/codebase.zip');
+            $latestCodebase->openFile(
+                app('config')->get('filesystems.disks.larapush.root') .
+                '/' .
+                $latestFolder .
+                '/codebase.zip'
+            );
 
             $zip = $this->getFileResourcesFromZip($latestCodebase);
 
-            /*
-            $zipResources = collect($latestCodebase->getAllInfo());
-
-            dd($zipResources);
-
             /** SelectionType::CHANGED */
-
-            $this->info('');
-            $this->info('Codebase resources count: '.$codebase->values()->count());
 
             // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
             $codebase = $codebase->reject(function ($codebaseResource) use ($zip) {
@@ -87,17 +76,12 @@ final class TestCommand extends InstallerBootstrap
                     return false;
                 }
 
-                $this->info('CHECKING '.$codebaseResource->relativePath());
                 $toRemove = false;
                 $zip->each(function ($zipResource) use (&$toRemove, $codebaseResource) {
                     if ($zipResource->relativePath() == $codebaseResource->relativePath()) {
-                        $this->info($zipResource->relativePath().' vs '.$codebaseResource->relativePath().' - '.$zipResource->modifiedDate()->toDateTimeString().
-                                ' vs '.
-                                $codebaseResource->modifiedDate()->toDateTimeString());
-
                         if ($zipResource->modifiedDate()->greaterThanOrEqualTo($codebaseResource->modifiedDate()) &&
-                           $codebaseResource->type() == 'file') {
-                            $toRemove = true;
+                            $codebaseResource->type() == 'file') {
+                                $toRemove = true;
                         }
 
                         return false;
@@ -105,25 +89,19 @@ final class TestCommand extends InstallerBootstrap
                 });
 
                 if ($toRemove) {
-                    $this->info('--REMOVING '.$codebaseResource->relativePath());
+                    $this->info('Removing '.$codebaseResource->relativePath());
                 }
 
                 return $toRemove;
             });
 
-            $this->info('');
-            $this->info('Codebase resources count: '.$codebase->values()->count());
-
-            dd('---');
-
-            $resource = $zipResources->first();
-
-            dd($cleanCodebase->first(), $resource->getName(), $resource->isFolder(), Carbon::createFromTimestamp($resource->getMtime()));
+            if ($codebase->count() > 0) {
+                // Transform codebase resource collection into a glob.
+                $codebase->transform(function ($item, $key) {
+                    return $item->realPath();
+                });
+            }
         }
-    }
-
-    public function getModifiedDateFromZipInnerResource($path)
-    {
     }
 
     public function getLatestTransactionFolderName()
@@ -234,6 +212,11 @@ class FileResource
 
             return $this;
         }
+    }
+
+    public function getGlob()
+    {
+        dd('inside');
     }
 
     public function type()
