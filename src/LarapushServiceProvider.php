@@ -65,7 +65,7 @@ final class LarapushServiceProvider extends ServiceProvider
         $this->commands([
             InstallRemoteCommand::class,
             InstallLocalCommand::class,
-            PushCommand::class
+            PushCommand::class,
         ]);
 
         app('router')->aliasMiddleware(
