@@ -2,11 +2,13 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use PhpZip\ZipFile;
+use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Utilities\AccessToken;
+use Brunocfalcao\Larapush\Utilities\ZipResource;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
-use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
+use PhpZip\ZipFile;
 
 final class Local
 {
@@ -309,16 +311,5 @@ final class LocalOperation
     public static function new(...$args)
     {
         return new self(...$args);
-    }
-}
-
-class AccessToken
-{
-    public $expiresIn = null;
-    public $token = null;
-
-    public function __construct(int $expiresIn, string $token)
-    {
-        [$this->expiresIn, $this->token] = [$expiresIn, $token];
     }
 }

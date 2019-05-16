@@ -2,6 +2,9 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
+use Illuminate\Support\Str;
+use PhpZip\Model\ZipInfo;
+
 class ZipResource
 {
     protected $modifiedDate = null;
