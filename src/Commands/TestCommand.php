@@ -5,7 +5,6 @@ namespace Brunocfalcao\Larapush\Commands;
 use PhpZip\ZipFile;
 use PhpZip\Model\ZipInfo;
 use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
 use Brunocfalcao\Larapush\Exceptions\LocalException;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
@@ -37,7 +36,7 @@ final class TestCommand extends InstallerBootstrap
 
         $zipFile = new ZipFile();
 
-        $codebase  = $this->getFileResources(app('config')->get('larapush.codebase'));
+        $codebase = $this->getFileResources(app('config')->get('larapush.codebase'));
         $blacklist = $this->getFileResources(app('config')->get('larapush.blacklist'));
 
         // Remove the blacklist resources from the codebase resources.
@@ -45,10 +44,9 @@ final class TestCommand extends InstallerBootstrap
             $exists = false;
 
             $blacklist->each(function ($item) use (&$exists, $resource) {
-
                 if ($item->realPath() == $resource->realPath()) {
                     $exists = true;
-                };
+                }
             });
 
             return $exists;
@@ -60,9 +58,9 @@ final class TestCommand extends InstallerBootstrap
         if ($latestFolder) {
             $latestCodebase = new \PhpZip\ZipFile();
             $latestCodebase->openFile(
-                app('config')->get('filesystems.disks.larapush.root') .
-                '/' .
-                $latestFolder .
+                app('config')->get('filesystems.disks.larapush.root').
+                '/'.
+                $latestFolder.
                 '/codebase.zip'
             );
 
@@ -81,7 +79,7 @@ final class TestCommand extends InstallerBootstrap
                     if ($zipResource->relativePath() == $codebaseResource->relativePath()) {
                         if ($zipResource->modifiedDate()->greaterThanOrEqualTo($codebaseResource->modifiedDate()) &&
                             $codebaseResource->type() == 'file') {
-                                $toRemove = true;
+                            $toRemove = true;
                         }
 
                         return false;
