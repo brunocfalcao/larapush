@@ -2,13 +2,13 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
+use PhpZip\ZipFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Laraning\Larapush\Utilities\FileResource;
 use Laraning\Larapush\Utilities\ZipResource;
-use PhpZip\ZipFile;
+use Laraning\Larapush\Utilities\FileResource;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
 
 final class Local
 {
@@ -80,10 +80,10 @@ final class LocalOperation
 
             $zip = $this->getFileResourcesFromZip($latestCodebase);
 
-            /** SelectionType::CHANGED */
+            /* SelectionType::CHANGED */
 
             if (app('config')->get('larapush.delta_upload') == true) {
-            // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
+                // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
                 $codebase = $codebase->reject(function ($codebaseResource) use ($zip) {
                     if ($codebaseResource->type() == 'folder') {
                         return false;
@@ -103,7 +103,7 @@ final class LocalOperation
 
                     return $toRemove;
                 });
-            };
+            }
 
             if ($codebase->count() > 0) {
                 // Transform codebase resource collection into a glob.
