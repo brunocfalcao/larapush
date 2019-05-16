@@ -3,8 +3,6 @@
 namespace Brunocfalcao\Larapush\Commands;
 
 use PhpZip\ZipFile;
-use PhpZip\Model\ZipInfo;
-use Illuminate\Support\Str;
 use Brunocfalcao\Larapush\Exceptions\LocalException;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;

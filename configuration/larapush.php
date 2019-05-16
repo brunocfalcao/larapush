@@ -1,7 +1,6 @@
 <?php
 
 use Brunocfalcao\Larapush\Utilities\ScriptType;
-use Brunocfalcao\Larapush\Utilities\SelectionType;
 
 return [
 
