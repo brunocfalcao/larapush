@@ -2,13 +2,13 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
+use PhpZip\ZipFile;
+use PhpZip\Model\ZipInfo;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
-use PhpZip\Model\ZipInfo;
-use PhpZip\ZipFile;
 
 final class TestCommand extends InstallerBootstrap
 {
@@ -62,7 +62,7 @@ final class TestCommand extends InstallerBootstrap
         $this->info('getting last transaction folder...');
         $latestFolder = $this->getLatestTransactionFolderName();
 
-        $this->info('Latest codebase folder - ' . $latestFolder);
+        $this->info('Latest codebase folder - '.$latestFolder);
 
         // If exists, open the zip file, and compare with the files we have.
         if ($latestFolder) {
@@ -79,25 +79,21 @@ final class TestCommand extends InstallerBootstrap
             /** SelectionType::CHANGED */
 
             $this->info('');
-            $this->info('Codebase resources count: ' . $codebase->values()->count());
+            $this->info('Codebase resources count: '.$codebase->values()->count());
 
             // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
             $codebase = $codebase->reject(function ($codebaseResource) use ($zip) {
-
                 if ($codebaseResource->type() == 'folder') {
                     return false;
                 }
 
-                $this->info('CHECKING ' . $codebaseResource->relativePath());
+                $this->info('CHECKING '.$codebaseResource->relativePath());
                 $toRemove = false;
                 $zip->each(function ($zipResource) use (&$toRemove, $codebaseResource) {
-
                     if ($zipResource->relativePath() == $codebaseResource->relativePath()) {
-                        $this->info($zipResource->relativePath() . ' vs ' . $codebaseResource->relativePath() . ' - ' . $zipResource->modifiedDate()->toDateTimeString() .
-                                ' vs ' .
+                        $this->info($zipResource->relativePath().' vs '.$codebaseResource->relativePath().' - '.$zipResource->modifiedDate()->toDateTimeString().
+                                ' vs '.
                                 $codebaseResource->modifiedDate()->toDateTimeString());
-
-
 
                         if ($zipResource->modifiedDate()->greaterThanOrEqualTo($codebaseResource->modifiedDate()) &&
                            $codebaseResource->type() == 'file') {
@@ -109,14 +105,14 @@ final class TestCommand extends InstallerBootstrap
                 });
 
                 if ($toRemove) {
-                    $this->info('--REMOVING ' . $codebaseResource->relativePath());
+                    $this->info('--REMOVING '.$codebaseResource->relativePath());
                 }
 
                 return $toRemove;
             });
 
             $this->info('');
-            $this->info('Codebase resources count: ' . $codebase->values()->count());
+            $this->info('Codebase resources count: '.$codebase->values()->count());
 
             dd('---');
 
@@ -238,14 +234,13 @@ class FileResource
 
             return $this;
         }
-
-        return null;
     }
 
     public function type()
     {
         return $this->type;
     }
+
     public function realPath()
     {
         return Str::endsWith($this->realPath, '/') ? substr($this->realPath, 0, -1) : $this->realPath;
