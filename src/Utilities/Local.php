@@ -5,8 +5,6 @@ namespace Brunocfalcao\Larapush\Utilities;
 use PhpZip\ZipFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Brunocfalcao\Larapush\Utilities\FileResource;
-use Brunocfalcao\Larapush\Utilities\ZipResource;
 use Brunocfalcao\Larapush\Exceptions\LocalException;
 use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
 
@@ -97,7 +95,7 @@ final class LocalOperation
 
                     return $toRemove;
                 });
-            };
+            }
         }
 
         if ($codebase->count() > 0) {
@@ -117,7 +115,7 @@ final class LocalOperation
                 "{$transaction}/runbook.json",
                 json_encode(app('config')->get('larapush.scripts'))
             );
-        };
+        }
     }
 
     private function getFileResourcesFromZip($ZipFile)
