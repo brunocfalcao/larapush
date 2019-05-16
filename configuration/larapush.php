@@ -61,10 +61,9 @@ return [
     'codebase' => [
     ],
 
-    // Defines the type of file selection to add to your codebase repository.
-    // SelectionType::ALL => All files/folders will be added to the repository.
-    // SelectionType::CHANGED => Only files that were updated or are new will be added to the repository.
-    'file_selection' => SelectionType::ALL,
+    // Differencial upload. If true then only newer or new files will be added to the codebase zip.
+    // If false, all files will be added to the codebase zip, not matter if they are new or newer.
+    'delta_upload' => true,
 
     // Any file/folder path added to this configuration key will be skipped if present on the files to be uploaded
     // to the web server.
