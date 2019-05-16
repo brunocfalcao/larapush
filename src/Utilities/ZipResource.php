@@ -2,8 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Illuminate\Support\Str;
 use PhpZip\Model\ZipInfo;
+use Illuminate\Support\Str;
 
 class ZipResource
 {
