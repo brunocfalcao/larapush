@@ -1,6 +1,6 @@
 <?php
 
-namespace Laraning\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Utilities;
 
 class ZipResource
 {

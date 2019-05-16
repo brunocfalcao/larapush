@@ -91,6 +91,10 @@ function get_response_payload_friendly_message(ResponsePayload $response)
             $message = $payload->message;
         }
 
+        if (isset($payload->error)) {
+            $message = $payload->error;
+        }
+
         if (isset($payload->line)) {
             $message .= " (line $payload->line)";
         }

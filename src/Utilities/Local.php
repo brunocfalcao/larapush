@@ -6,8 +6,8 @@ use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
 use Brunocfalcao\Larapush\Exceptions\LocalException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Laraning\Larapush\Utilities\FileResource;
-use Laraning\Larapush\Utilities\ZipResource;
+use Brunocfalcao\Larapush\Utilities\FileResource;
+use Brunocfalcao\Larapush\Utilities\ZipResource;
 use PhpZip\ZipFile;
 
 final class Local
@@ -33,8 +33,6 @@ final class LocalOperation
                           ->withPayload(['environments' => implode(',', app('config')->get('larapush.environment.reserved'))])
                           ->call(larapush_remote_url('check-environment'));
 
-        dd($response);
-
         $this->checkResponseStatus($response);
 
         return (bool) $response->payload['prompt'];
@@ -45,9 +43,6 @@ final class LocalOperation
         if (count(app('config')->get('larapush.codebase')) == 0) {
             throw new LocalException('No files or folders identified to upload. Please check your configuration file');
         }
-
-        // Create a new transaction folder inside the larapush storage.
-        Storage::disk('larapush')->makeDirectory($transaction);
 
         // Computes the exact file paths that should be included in the codebase zip.
         $codebase = $this->getFileResources(app('config')->get('larapush.codebase'));
@@ -80,10 +75,10 @@ final class LocalOperation
 
             $zip = $this->getFileResourcesFromZip($latestCodebase);
 
-            /** SelectionType::CHANGED */
-
+            // Delta upload?
             if (app('config')->get('larapush.delta_upload') == true) {
-            // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
+                // Remove all the resources that have the same datetime as the zip.
+                // Just the modified ones remain + new ones.
                 $codebase = $codebase->reject(function ($codebaseResource) use ($zip) {
                     if ($codebaseResource->type() == 'folder') {
                         return false;
@@ -104,22 +99,25 @@ final class LocalOperation
                     return $toRemove;
                 });
             };
+        }
 
-            if ($codebase->count() > 0) {
-                // Transform codebase resource collection into a glob.
-                $codebase->transform(function ($item, $key) {
-                    return $item->realPath();
-                });
+        if ($codebase->count() > 0) {
+            // Transform codebase resource collection into a glob.
+            $codebase->transform(function ($item, $key) {
+                return $item->realPath();
+            });
 
-                // Create zip, and store it inside the transaction folder.
-                $this->CreateCodebaseZip(larapush_storage_path("{$transaction}/codebase.zip"), $codebase);
+            // Create a new transaction folder inside the larapush storage.
+            Storage::disk('larapush')->makeDirectory($transaction);
 
-                // Store the runbook, and the zip codebase file.
-                Storage::disk('larapush')->put(
-                    "{$transaction}/runbook.json",
-                    json_encode(app('config')->get('larapush.scripts'))
-                );
-            }
+            // Create zip, and store it inside the transaction folder.
+            $this->CreateCodebaseZip(larapush_storage_path("{$transaction}/codebase.zip"), $codebase->toArray());
+
+            // Store the runbook, and the zip codebase file.
+            Storage::disk('larapush')->put(
+                "{$transaction}/runbook.json",
+                json_encode(app('config')->get('larapush.scripts'))
+            );
         }
     }
 
@@ -151,7 +149,7 @@ final class LocalOperation
             }
         } //end loop
 
-        return $latest_dir;
+        return $latest_dir == '.' ? null : $latest_dir;
     }
 
     private function getFileResources(array $relativePaths = [])
@@ -217,30 +215,16 @@ final class LocalOperation
         $zipFile = new ZipFile();
 
         collect($glob)->each(function ($item) use (&$zipFile) {
-            if (is_dir(base_path($item))) {
-                $files = glob_recursive(base_path($item.'/*'));
+            if (is_dir($item)) {
+                $zipFile->addEmptyDir($item);
             }
 
-            if (is_file(base_path($item))) {
-                $files = glob_recursive(base_path($item));
-            }
-
-            foreach ($files as $file) {
-                $unixPath = str_replace(DIRECTORY_SEPARATOR, '/', substr($file, strlen(base_path()) + 1));
-                $unixBasePath = str_replace(DIRECTORY_SEPARATOR, '/', base_path($unixPath));
-
-                if (is_dir(base_path($unixPath))) {
-                    $zipFile->addEmptyDir($unixPath);
-                }
-
-                if (is_file(base_path($unixPath))) {
-                    $zipFile->addFile($unixBasePath, $unixPath);
-                }
+            if (is_file($item)) {
+                $zipFile->addFile($item, substr($item, strlen(base_path()) + 1));
             }
         });
 
         $zipFile->saveAsFile($fqfilename);
-
         $zipFile->close();
     }
 
@@ -313,7 +297,7 @@ final class LocalOperation
 
     private function checkResponseStatus(ResponsePayload $response) : void
     {
-        if (! $response->isOk) {
+        if (! $response->isOk || data_get($response->payload, 'error') != null) {
             throw new LocalException(get_response_payload_friendly_message($response));
         }
     }

@@ -1,6 +1,8 @@
 <?php
 
-namespace Laraning\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Utilities;
+
+use Illuminate\Support\Str;
 
 class FileResource
 {
