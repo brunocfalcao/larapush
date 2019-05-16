@@ -2,12 +2,11 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
-use Brunocfalcao\Larapush\Utilities\AccessToken;
+use PhpZip\ZipFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use PhpZip\ZipFile;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
 
 final class LocalOperation
 {
