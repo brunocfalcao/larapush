@@ -2,13 +2,14 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
+use PhpZip\ZipFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Brunocfalcao\Larapush\Utilities\FileResource;
 use Brunocfalcao\Larapush\Utilities\ZipResource;
 use PhpZip\ZipFile;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
 
 final class Local
 {
@@ -20,29 +21,29 @@ final class Local
 
 final class LocalOperation
 {
-    private $accessToken;
+private $accessToken;
 
-    protected $zipFilename;
+protected $zipFilename;
 
-    public function askRemoteToCheckEnvironment()
+public function askRemoteToCheckEnvironment()
+{
+    $response = ReSTCaller::asPost()
+                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                      ->withHeader('Accept', 'application/json')
+                      ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
+                      ->withPayload(['environments' => implode(',', app('config')->get('larapush.environment.reserved'))])
+                      ->call(larapush_remote_url('check-environment'));
+
+    $this->checkResponseStatus($response);
+
+    return (bool) $response->payload['prompt'];
+}
+
+public function createRepository(string $transaction) : void
     {
-        $response = ReSTCaller::asPost()
-                          ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
-                          ->withHeader('Accept', 'application/json')
-                          ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
-                          ->withPayload(['environments' => implode(',', app('config')->get('larapush.environment.reserved'))])
-                          ->call(larapush_remote_url('check-environment'));
-
-        $this->checkResponseStatus($response);
-
-        return (bool) $response->payload['prompt'];
-    }
-
-    public function createRepository(string $transaction) : void
-    {
-        if (count(app('config')->get('larapush.codebase')) == 0) {
-            throw new LocalException('No files or folders identified to upload. Please check your configuration file');
-        }
+if (count(app('config')->get('larapush.codebase')) == 0) {
+    throw new LocalException('No files or folders identified to upload. Please check your configuration file');
+}
 
         // Computes the exact file paths that should be included in the codebase zip.
         $codebase = $this->getFileResources(app('config')->get('larapush.codebase'));
@@ -64,8 +65,34 @@ final class LocalOperation
         $latestFolder = $this->getLatestTransactionFolderName();
 
         // If exists, open the zip file, and compare with the files we have.
-        if ($latestFolder) {
+        if ($latestFolder) { { { { { { { { { { { { { { { { { { { { { { { { { { {
             $latestCodebase = new \PhpZip\ZipFile();
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
             $latestCodebase->openFile(
                 app('config')->get('filesystems.disks.larapush.root').
                 '/'.
@@ -75,10 +102,17 @@ final class LocalOperation
 
             $zip = $this->getFileResourcesFromZip($latestCodebase);
 
+            <<<<<<< HEAD
             // Delta upload?
             if (app('config')->get('larapush.delta_upload') == true) {
                 // Remove all the resources that have the same datetime as the zip.
                 // Just the modified ones remain + new ones.
+        =======
+            /* SelectionType::CHANGED */
+
+            if (app('config')->get('larapush.delta_upload') == true) {
+                // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
+        >>>>>>> 5269161de622df922c31f16ed2873c758eb47a95
                 $codebase = $codebase->reject(function ($codebaseResource) use ($zip) {
                     if ($codebaseResource->type() == 'folder') {
                         return false;
@@ -98,10 +132,14 @@ final class LocalOperation
 
                     return $toRemove;
                 });
+        <<<<<<< HEAD
             };
         }
+        =======
+            }
+        >>>>>>> 5269161de622df922c31f16ed2873c758eb47a95
 
-        if ($codebase->count() > 0) {
+            if ($codebase->count() > 0) {
             // Transform codebase resource collection into a glob.
             $codebase->transform(function ($item, $key) {
                 return $item->realPath();
@@ -119,28 +157,28 @@ final class LocalOperation
                 json_encode(app('config')->get('larapush.scripts'))
             );
         }
-    }
+        }
 
-    private function getFileResourcesFromZip($ZipFile)
-    {
-        $zipResources = collect($ZipFile->getAllInfo());
-        $resources = collect();
-        foreach ($zipResources as $zipInfo) {
+            private function getFileResourcesFromZip($ZipFile)
+        {
+            $zipResources = collect($ZipFile->getAllInfo());
+            $resources = collect();
+            foreach ($zipResources as $zipInfo) {
             $resources->push(new ZipResource($zipInfo));
         }
 
-        return $resources;
-    }
+            return $resources;
+        }
 
-    private function getLatestTransactionFolderName()
-    {
-        $path = app('config')->get('filesystems.disks.larapush.root');
+        private function getLatestTransactionFolderName()
+        {
+            $path = app('config')->get('filesystems.disks.larapush.root');
 
-        $latest_ctime = 0;
-        $latest_dir = '';
-        $d = dir($path);
+            $latest_ctime = 0;
+            $latest_dir = '';
+            $d = dir($path);
 
-        while (false !== ($entry = $d->read())) {
+            while (false !== ($entry = $d->read())) {
             $filepath = "{$path}/{$entry}";
 
             if (is_dir($filepath) && filectime($filepath) > $latest_ctime) {
@@ -149,14 +187,14 @@ final class LocalOperation
             }
         } //end loop
 
-        return $latest_dir == '.' ? null : $latest_dir;
-    }
+            return $latest_dir == '.' ? null : $latest_dir;
+        }
 
-    private function getFileResources(array $relativePaths = [])
-    {
-        $files = collect();
+            private function getFileResources(array $relativePaths = [])
+        {
+            $files = collect();
 
-        collect($relativePaths)->each(function ($item) use (&$files) {
+            collect($relativePaths)->each(function ($item) use (&$files) {
             if (is_dir(base_path($item))) {
                 $files = $files->merge(glob_recursive(base_path($item.'/*')));
             }
@@ -167,54 +205,54 @@ final class LocalOperation
         });
 
         // Transform each item into a FileResource.
-        $files->transform(function ($item) {
+            $files->transform(function ($item) {
             return new FileResource($item);
         });
 
-        return $files;
-    }
+            return $files;
+        }
 
-    public function runPostScripts(string $transaction) : void
-    {
-        $response = ReSTCaller::asPost()
+            public function runPostScripts(string $transaction) : void
+        {
+            $response = ReSTCaller::asPost()
                               ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
                               ->withHeader('Accept', 'application/json')
                               ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                               ->withPayload(['transaction' => $transaction])
                               ->call(larapush_remote_url('post-scripts'));
 
-        $this->checkResponseStatus($response);
-    }
+            $this->checkResponseStatus($response);
+        }
 
-    public function deploy(string $transaction) : void
-    {
-        $response = ReSTCaller::asPost()
+            public function deploy(string $transaction) : void
+        {
+            $response = ReSTCaller::asPost()
                               ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
                               ->withHeader('Accept', 'application/json')
                               ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                               ->withPayload(['transaction' => $transaction])
                               ->call(larapush_remote_url('deploy'));
 
-        $this->checkResponseStatus($response);
-    }
+            $this->checkResponseStatus($response);
+        }
 
-    public function runPreScripts(string $transaction) : void
-    {
-        $response = ReSTCaller::asPost()
+            public function runPreScripts(string $transaction) : void
+        {
+            $response = ReSTCaller::asPost()
                               ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
                               ->withHeader('Accept', 'application/json')
                               ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                               ->withPayload(['transaction' => $transaction])
                               ->call(larapush_remote_url('pre-scripts'));
 
-        $this->checkResponseStatus($response);
-    }
+            $this->checkResponseStatus($response);
+        }
 
-    public function CreateCodebaseZip(string $fqfilename, array $glob) : void
-    {
-        $zipFile = new ZipFile();
+            public function CreateCodebaseZip(string $fqfilename, array $glob) : void
+        {
+            $zipFile = new ZipFile();
 
-        collect($glob)->each(function ($item) use (&$zipFile) {
+            collect($glob)->each(function ($item) use (&$zipFile) {
             if (is_dir($item)) {
                 $zipFile->addEmptyDir($item);
             }
@@ -224,13 +262,13 @@ final class LocalOperation
             }
         });
 
-        $zipFile->saveAsFile($fqfilename);
-        $zipFile->close();
-    }
+            $zipFile->saveAsFile($fqfilename);
+            $zipFile->close();
+        }
 
-    public function uploadCodebase(string $transaction) : void
-    {
-        $response = ReSTCaller::asPost()
+            public function uploadCodebase(string $transaction) : void
+        {
+            $response = ReSTCaller::asPost()
                               ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
                               ->withHeader('Accept', 'application/json')
                               ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
@@ -239,89 +277,89 @@ final class LocalOperation
                               ->withPayload(['codebase' => base64_encode(file_get_contents(larapush_storage_path("{$transaction}/codebase.zip")))])
                               ->call(larapush_remote_url('upload'));
 
-        $this->checkResponseStatus($response);
-    }
+            $this->checkResponseStatus($response);
+        }
 
-    public function preChecks() : void
-    {
-        $storagePath = app('config')->get('larapush.storage.path');
-        if (! is_dir($storagePath)) {
+        public function preChecks() : void
+        {
+            $storagePath = app('config')->get('larapush.storage.path');
+            if (! is_dir($storagePath)) {
             mkdir($storagePath, 0755, true);
         }
 
-        if (! is_writable($storagePath)) {
+            if (! is_writable($storagePath)) {
             throw new LocalException('Local storage directory not writeable');
         }
-    }
+        }
 
-    public function getAccessToken()
-    {
-        $response = ReSTCaller::asPost()
+        public function getAccessToken()
+        {
+            $response = ReSTCaller::asPost()
                            ->withPayload(['grant_type'    => 'client_credentials',
                                           'client_id'     => app('config')->get('larapush.oauth.client'),
                                           'client_secret' => app('config')->get('larapush.oauth.secret'), ])
                            ->withHeader('Accept', 'application/json')
                            ->call(app('config')->get('larapush.remote.url').'/oauth/token');
 
-        $this->checkAccessToken($response);
+            $this->checkAccessToken($response);
 
-        $this->accessToken = new AccessToken(
+            $this->accessToken = new AccessToken(
             $response->payload['expires_in'],
             $response->payload['access_token']
         );
 
-        return $this;
-    }
+            return $this;
+        }
 
-    public function askRemoteForPreChecks() : void
-    {
-        $response = ReSTCaller::asPost()
+        public function askRemoteForPreChecks() : void
+        {
+            $response = ReSTCaller::asPost()
                           ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
                           ->withHeader('Accept', 'application/json')
                           ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                           ->call(larapush_remote_url('prechecks'));
 
-        $this->checkResponseStatus($response);
-    }
+            $this->checkResponseStatus($response);
+        }
 
-    public function ping() : void
-    {
-        $response = ReSTCaller::asPost()
+        public function ping() : void
+        {
+            $response = ReSTCaller::asPost()
                           ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
                           ->withHeader('Accept', 'application/json')
                           ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                           ->call(larapush_remote_url('ping'));
 
-        $this->checkResponseStatus($response);
-    }
+            $this->checkResponseStatus($response);
+        }
 
-    private function checkResponseStatus(ResponsePayload $response) : void
-    {
-        if (! $response->isOk || data_get($response->payload, 'error') != null) {
+            private function checkResponseStatus(ResponsePayload $response) : void
+        {
+            if (! $response->isOk || data_get($response->payload, 'error') != null) {
             throw new LocalException(get_response_payload_friendly_message($response));
         }
-    }
+        }
 
-    private function checkAccessToken(?ResponsePayload $response) : void
-    {
-        if (! $response->isOk || data_get($response->payload, 'access_token') == null) {
+            private function checkAccessToken(?ResponsePayload $response) : void
+        {
+            if (! $response->isOk || data_get($response->payload, 'access_token') == null) {
             throw new AccessTokenException(get_response_payload_friendly_message($response));
         }
-    }
+        }
 
-    public static function new(...$args)
-    {
-        return new self(...$args);
-    }
-}
+            public static function new(...$args)
+        {
+            return new self(...$args);
+        }
+        }
 
-class AccessToken
-{
-    public $expiresIn = null;
-    public $token = null;
+        class AccessToken
+        {
+            public $expiresIn = null;
+            public $token = null;
 
-    public function __construct(int $expiresIn, string $token)
-    {
-        [$this->expiresIn, $this->token] = [$expiresIn, $token];
-    }
-}
+            public function __construct(int $expiresIn, string $token)
+        {
+            [$this->expiresIn, $this->token] = [$expiresIn, $token];
+        }
+        }
