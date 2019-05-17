@@ -215,8 +215,6 @@ final class LocalOperation
             }
         });
 
-        //dd($zipFile);
-
         $zipFile->saveAsFile($fqfilename);
         $zipFile->close();
     }
