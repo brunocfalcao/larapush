@@ -51,22 +51,22 @@ final class LocalOperation
             return $exists;
         })->values();
 
-        $latestFolder = $this->getLatestTransactionFolderName();
+        if (app('config')->get('larapush.delta_upload') == true) {
+            $latestFolder = $this->getLatestTransactionFolderName();
 
-        // If exists, open the zip file, and compare with the files we have.
-        if ($latestFolder) {
-            $latestCodebase = new \PhpZip\ZipFile();
+            // If exists, open the zip file, and compare with the files we have.
+            if ($latestFolder) {
+                $latestCodebase = new \PhpZip\ZipFile();
 
-            $latestCodebase->openFile(
-                app('config')->get('filesystems.disks.larapush.root').
-                '/'.
-                $latestFolder.
-                '/codebase.zip'
-            );
+                $latestCodebase->openFile(
+                    app('config')->get('filesystems.disks.larapush.root').
+                    '/'.
+                    $latestFolder.
+                    '/codebase.zip'
+                );
 
-            $zip = $this->getFileResourcesFromZip($latestCodebase);
+                $zip = $this->getFileResourcesFromZip($latestCodebase);
 
-            if (app('config')->get('larapush.delta_upload') == true) {
                 // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
                 $codebase = $codebase->reject(function ($codebaseResource) use ($zip) {
                     if ($codebaseResource->type() == 'folder') {
@@ -203,15 +203,19 @@ final class LocalOperation
     {
         $zipFile = new ZipFile();
 
+        $zipFile->setCompressionLevel(9);
+
         collect($glob)->each(function ($item) use (&$zipFile) {
             if (is_dir($item)) {
-                $zipFile->addEmptyDir($item);
+                $zipFile->addEmptyDir(substr($item, strlen(base_path()) + 1), $item);
             }
 
             if (is_file($item)) {
                 $zipFile->addFile($item, substr($item, strlen(base_path()) + 1));
             }
         });
+
+        //dd($zipFile);
 
         $zipFile->saveAsFile($fqfilename);
         $zipFile->close();
