@@ -8,6 +8,16 @@ use Brunocfalcao\Larapush\Utilities\Remote;
 use Brunocfalcao\Larapush\Utilities\CodebaseRepository;
 use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
 
+/**
+ * Controller that receives your codebase and scripts to run.
+ *
+ * @category   Larapush
+ * @author     Bruno Falcao <bruno.falcao@laraning.com>
+ * @copyright  2019 Bruno Falcao
+ * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3
+ * @version    Release: 1.0
+ * @link       http://www.github.com/brunocfalcao/larapush
+ */
 final class UploadController extends RemoteBaseController
 {
     public function __invoke(Request $request)

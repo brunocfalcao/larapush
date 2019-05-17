@@ -4,6 +4,16 @@ namespace Brunocfalcao\Larapush\Utilities;
 
 use Illuminate\Support\Str;
 
+/**
+ * Class that stores a file resource structure.
+ *
+ * @category   Larapush
+ * @author     Bruno Falcao <bruno.falcao@laraning.com>
+ * @copyright  2019 Bruno Falcao
+ * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3
+ * @version    Release: 1.0
+ * @link       http://www.github.com/brunocfalcao/larapush
+ */
 class FileResource
 {
     protected $modifiedDate = null;
