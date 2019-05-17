@@ -18,7 +18,7 @@ trait SharedInstallerActions
         $this->runProcess('php artisan config:clear --quiet', getcwd());
     }
 
-    protected function unsetEnvData()
+    protected function unsetEnvironmentData()
     {
         $env = new DotenvEditor;
         $env->load(base_path('.env'));

@@ -1,31 +1,88 @@
 <?php
 
-/**
- * Larapush API routes.
- * All routes are protected using the 'client' Laravel Passport middleware
- * to guarantee transaction security.
- *
- * Additionally they are also protected by the Larapush 'same-token' middleware meaning a custom token
- * needs to be the same in the local dev computer and in the web server.
- */
+/*
+|--------------------------------------------------------------------------
+| Larapush routes
+|--------------------------------------------------------------------------
+|
+| All routes that Larapush uses are declared on this file.
+| They are all protected by the default Laravel Passport 'client' middleware
+| and a custom middleware 'same-token' that validates additional token data.
+|
+*/
 
-// Request an access token request, and a connectivity test.
+/*
+|--------------------------------------------------------------------------
+| Ping request
+|--------------------------------------------------------------------------
+|
+| Requests and access token and checks if the web server have Larapush
+| installed.
+*/
 Route::post('ping', PingController::class)->name('ping');
 
-// Runs environment check.
+/*
+|--------------------------------------------------------------------------
+| Check web server environment
+|--------------------------------------------------------------------------
+|
+| The web server verifies if all requirements are met to start an upload
+| and codebase deployment process.
+|
+*/
 Route::post('check-environment', CheckEnvironmentController::class)->name('pre-scripts');
 
-// Request a pre-check to the web server.
+/*
+|--------------------------------------------------------------------------
+| Pre-checks verification
+|--------------------------------------------------------------------------
+|
+| The web server checks if it can write data in the storage path.
+|
+*/
 Route::post('prechecks', PreChecksController::class)->name('prechecks');
 
-// Uploads codebase (zip) to remote environment.
+/*
+|--------------------------------------------------------------------------
+| Web server codebase upload
+|--------------------------------------------------------------------------
+|
+| Web server receives the codebase + scripts to run from your local
+| computer.
+|
+*/
 Route::post('upload', UploadController::class)->name('upload');
 
-// Runs pre-push scripts.
+/*
+|--------------------------------------------------------------------------
+| Pre-deployment scripts execution
+|--------------------------------------------------------------------------
+|
+| Request made to the web server to run the scripts prior to the codebase
+| deployment.
+|
+*/
 Route::post('pre-scripts', PreScriptsController::class)->name('pre-scripts');
 
-// Deploy (unzip) codebase into your remove environment.
+/*
+|--------------------------------------------------------------------------
+| Deployment execution
+|--------------------------------------------------------------------------
+|
+| The server deploys your code into your web server, meaning he unzips
+| the received zip file, and verifies that all files were correctly
+| extracted.
+|
+*/
 Route::post('deploy', DeployController::class)->name('deploy');
 
-// Runs post-push scripts.
+/*
+|--------------------------------------------------------------------------
+| Post-deployment scripts execution
+|--------------------------------------------------------------------------
+|
+| Request made to the web server to run the scripts after the codebase
+| is successfully deployed.
+|
+*/
 Route::post('post-scripts', PostScriptsController::class)->name('post-scripts');

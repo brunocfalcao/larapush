@@ -5,6 +5,18 @@ namespace Brunocfalcao\Larapush\Commands;
 use sixlive\DotenvEditor\DotenvEditor;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 
+/**
+ * Larapush local computer installation command.
+ * Used to install Larapush in the development computer.
+ *
+ * @category   Larapush
+ * @package    brunocfalcao/larapush
+ * @author     Bruno Falcao <bruno.falcao@laraning.com>
+ * @copyright  2019 Bruno Falcao
+ * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3
+ * @version    Release: 1.0
+ * @link       http://www.github.com/brunocfalcao/larapush
+ */
 final class InstallLocalCommand extends InstallerBootstrap
 {
     protected $messages = [
@@ -19,7 +31,7 @@ final class InstallLocalCommand extends InstallerBootstrap
                             {--secret= : Your OAuth Secret}
                             {--token= : The Remote server token, must be the same}';
 
-    protected $description = 'Installs Larapush in your local environment';
+    protected $description = 'Installs Larapush in your local development computer';
 
     public function handle()
     {
@@ -37,9 +49,12 @@ final class InstallLocalCommand extends InstallerBootstrap
         $bar = $this->output->createProgressBar($this->steps);
         $bar->start();
 
-        // In case of a re-installation, delete all the .env larapush data.
+        /**
+         * In case of re-installation, it should delete the previous
+         * Larapush key values so they don't mess up with the configuration.
+         */
         $this->bulkInfo(2, 'Cleaning old .env larapush keys (if they exist)...', 1);
-        $this->unsetEnvData();
+        $this->unsetEnvironmentData();
         $bar->advance();
 
         $this->info('');
@@ -48,7 +63,7 @@ final class InstallLocalCommand extends InstallerBootstrap
             'required|url'
         );
 
-        $this->setEnvData();
+        $this->setEnvironmentData();
         $bar->advance();
 
         $this->publishLarapushResources();
@@ -57,12 +72,12 @@ final class InstallLocalCommand extends InstallerBootstrap
         $this->clearConfigurationCache();
         $bar->finish();
 
-        $this->showLastResumedInformation();
+        $this->allDone();
     }
 
-    protected function setEnvData()
+    protected function setEnvironmentData()
     {
-        $this->bulkInfo(0, 'Setting .env variables...', 1);
+        $this->bulkInfo(0, 'Setting .env values...', 1);
 
         $env = new DotenvEditor;
         $env->load(base_path('.env'));
@@ -75,9 +90,9 @@ final class InstallLocalCommand extends InstallerBootstrap
         unset($env);
     }
 
-    protected function showLastResumedInformation()
+    protected function allDone()
     {
-        $this->bulkInfo(2, 'All good! Now you can push your codebase to your web server!', 1);
-        $this->info("Don't forget to update your larapush.php configuration file for the correct codebase files and directories that you want to upload.");
+        $this->bulkInfo(1, 'Remark: Don\'t forget to update your larapush.php configuration file for the correct codebase files and directories that you want to upload.', 1);
+        $this->bulkInfo(1, 'All good! Now push something amazing :)', 1);
     }
 }

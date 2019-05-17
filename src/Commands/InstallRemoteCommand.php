@@ -8,6 +8,18 @@ use sixlive\DotenvEditor\DotenvEditor;
 use Illuminate\Support\Facades\Artisan;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 
+/**
+ * Larapush web server installation command.
+ * Used to install Larapush in your web server.
+ *
+ * @category   Larapush
+ * @package    brunocfalcao/larapush
+ * @author     Bruno Falcao <bruno.falcao@laraning.com>
+ * @copyright  2019 Bruno Falcao
+ * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3
+ * @version    Release: 1.0
+ * @link       http://www.github.com/brunocfalcao/larapush
+ */
 final class InstallRemoteCommand extends InstallerBootstrap
 {
     private $client;
@@ -16,7 +28,7 @@ final class InstallRemoteCommand extends InstallerBootstrap
 
     protected $signature = 'larapush:install-remote';
 
-    protected $description = 'Installs Larapush on your remote environment';
+    protected $description = 'Installs Larapush on your web server';
 
     public function __construct()
     {
@@ -29,21 +41,29 @@ final class InstallRemoteCommand extends InstallerBootstrap
 
         $this->steps = 5;
 
-        // Laravel Passport installed?
-        if (! is_dir(base_path('vendor/laravel/passport'))) {
+        /**
+         * Laravel Passport is a key requirement for Larapush to work.
+         * Therefore without having it installed in your web server this
+         * package cannot work correctly.
+         * Laravel Passport is installed automatically, without any
+         * need for your manual configuration.
+         */
+        if (! $this->passportExists()) {
             $this->steps += 5;
         }
 
-        $this->bulkInfo(2, 'Installing Larapush on a REMOTE environment...', 1);
+        $this->bulkInfo(2, 'Starting installation on your web server...', 1);
         $this->bar = $this->output->createProgressBar($this->steps);
         $this->bar->start();
 
-        // In case of a re-installation, delete all the .env larapush data.
+        /**
+         * In case of a re-installation the old .env keys should be deleted.
+         */
         $this->bulkInfo(2, 'Cleaning old .env larapush keys (if they exist)...', 1);
-        $this->unsetEnvData();
+        $this->unsetEnvironmentData();
         $this->bar->advance();
 
-        if (! is_dir(base_path('vendor/laravel/passport')) && ! class_exists('\Laravel\Passport\Passport')) {
+        if (! $this->passportExists()) {
             $this->installLaravelPassport();
         }
 
@@ -61,6 +81,11 @@ final class InstallRemoteCommand extends InstallerBootstrap
         $this->bar->finish();
 
         $this->showLocalInstallInformation();
+    }
+
+    protected function passportExists()
+    {
+        return is_dir(base_path('vendor/laravel/passport')) && class_exists('\Laravel\Passport\Passport');
     }
 
     protected function registerEnvKeys()
@@ -81,8 +106,8 @@ final class InstallRemoteCommand extends InstallerBootstrap
 
     protected function showLocalInstallInformation()
     {
-        $this->bulkInfo(2, 'ALL DONE!', 0);
-        $this->bulkInfo(1, 'Please install Larapush on your local Laravel app and run the following artisan command:', 1);
+        $this->bulkInfo(2, 'All done!', 0);
+        $this->bulkInfo(1, 'Please COPY + PASTE the following artisan command on your local computer to install Larapush:', 1);
         $this->info("php artisan larapush:install-local --client={$this->client} --secret={$this->secret} --token={$this->token}");
     }
 
@@ -139,17 +164,15 @@ final class InstallRemoteCommand extends InstallerBootstrap
         $this->bulkInfo(2, 'Installing Laravel Passport...', 1);
 
         larapush_rescue(function () {
-            //Artisan::call("passport:install");
             $this->runProcess('php artisan passport:install');
         }, function ($exception) {
             $this->exception = $exception;
             $this->gracefullyExit();
         });
 
-        //$this->runProcess('php artisan passport:install');
         $this->bar->advance();
 
-        $this->bulkInfo(2, 'Dumping autoload...', 1);
+        $this->bulkInfo(2, 'Running Composer dump autoload...', 1);
         $this->bar->advance();
         $this->runProcess('composer dumpautoload');
     }

@@ -7,6 +7,18 @@ use Brunocfalcao\Larapush\Utilities\Remote;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
 
+/**
+ * Larapush push command.
+ * Prepares, uploads and deploys your codebase to your web server.
+ *
+ * @category   Larapush
+ * @package    brunocfalcao/larapush
+ * @author     Bruno Falcao <bruno.falcao@laraning.com>
+ * @copyright  2019 Bruno Falcao
+ * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3
+ * @version    Release: 1.0
+ * @link       http://www.github.com/brunocfalcao/larapush
+ */
 final class PushCommand extends InstallerBootstrap
 {
     use SimplifiesConsoleOutput;
@@ -43,7 +55,6 @@ final class PushCommand extends InstallerBootstrap
 
         $this->transaction = generate_transaction_code();
 
-        // Each transaction folder is stored inside storage_path('app/larapush').
         $this->createLocalRepository();
         $bar->advance();
 
@@ -83,7 +94,9 @@ final class PushCommand extends InstallerBootstrap
 
     protected function createLocalRepository()
     {
-        $this->bulkInfo(2, "Creating local environment codebase repository ({$this->transaction})...", 1);
+        $suffix = app('config')->get('larapush.delta_upload') == true ? ' with changed or new files only' : '';
+
+        $this->bulkInfo(2, "Creating local environment codebase repository ({$this->transaction}){$suffix}...", 1);
 
         larapush_rescue(function () {
             Local::createRepository($this->transaction);
@@ -95,7 +108,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected function runPostScripts()
     {
-        $this->bulkInfo(2, 'Running your post-scripts after unpacking your codebase (if they exist)...', 1);
+        $this->bulkInfo(2, 'Running your post-scripts (if they exist) after unpacking your codebase...', 1);
 
         larapush_rescue(function () {
             Local::getAccessToken()
@@ -121,7 +134,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected function runPreScripts()
     {
-        $this->bulkInfo(2, 'Running your pre-scripts before unpacking your codebase (if they exist)...', 1);
+        $this->bulkInfo(2, 'Running your pre-scripts (if they exist) before unpacking your codebase...', 1);
 
         larapush_rescue(function () {
             Local::getAccessToken()
@@ -134,7 +147,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected function uploadCodebase()
     {
-        $this->bulkInfo(2, 'Uploading codebase to your remote environment...', 1);
+        $this->bulkInfo(2, 'Uploading your codebase to your web server...', 1);
 
         larapush_rescue(function () {
             Local::getAccessToken()
@@ -147,7 +160,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected function askRemoteForPreChecks()
     {
-        $this->bulkInfo(2, 'Asking web server to make its pre-checks...', 1);
+        $this->bulkInfo(2, 'Asking your web server to make some pre-checks...', 1);
 
         larapush_rescue(function () {
             Local::getAccessToken()
