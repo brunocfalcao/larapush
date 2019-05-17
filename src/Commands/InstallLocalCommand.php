@@ -91,7 +91,7 @@ final class InstallLocalCommand extends InstallerBootstrap
 
     protected function allDone()
     {
-        $this->bulkInfo(1, 'Remark: Don\'t forget to update your larapush.php configuration file for the correct codebase files and directories that you want to upload.', 1);
-        $this->bulkInfo(1, 'All good! Now push something amazing :)', 1);
+        $this->bulkInfo(2, 'Remark: Don\'t forget to update your larapush.php configuration file for the correct codebase files and directories that you want to upload.', 1);
+        $this->bulkInfo(0, 'All good! Now push something amazing :)', 1);
     }
 }
