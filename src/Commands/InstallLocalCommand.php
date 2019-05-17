@@ -10,7 +10,6 @@ use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
  * Used to install Larapush in the development computer.
  *
  * @category   Larapush
- * @package    brunocfalcao/larapush
  * @author     Bruno Falcao <bruno.falcao@laraning.com>
  * @copyright  2019 Bruno Falcao
  * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3
@@ -49,7 +48,7 @@ final class InstallLocalCommand extends InstallerBootstrap
         $bar = $this->output->createProgressBar($this->steps);
         $bar->start();
 
-        /**
+        /*
          * In case of re-installation, it should delete the previous
          * Larapush key values so they don't mess up with the configuration.
          */

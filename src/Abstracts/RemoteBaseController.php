@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
  * system for the respective configured Larapush client id.
  *
  * @category   Larapush
- * @package    brunocfalcao/larapush
  * @author     Bruno Falcao <bruno.falcao@laraning.com>
  * @copyright  2019 Bruno Falcao
  * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3

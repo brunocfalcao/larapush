@@ -12,7 +12,6 @@ use Brunocfalcao\Larapush\Concerns\ValidatesConsoleArguments;
  * Parent class used for the installer commands.
  *
  * @category   Larapush
- * @package    brunocfalcao/larapush
  * @author     Bruno Falcao <bruno.falcao@laraning.com>
  * @copyright  2019 Bruno Falcao
  * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3
