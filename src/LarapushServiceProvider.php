@@ -48,7 +48,7 @@ final class LarapushServiceProvider extends ServiceProvider
         Route::as('larapush.')
              ->middleware('same-token', 'client')
              ->namespace('Brunocfalcao\Larapush\Http\Controllers')
-             ->prefix(app('config')->get('larapush.remote.prefix'))
+             ->prefix(app('config')->get('larapush.remote.suffix'))
              ->group(__DIR__.'/../routes/api.php');
 
         // Load Laravel Passport routes.

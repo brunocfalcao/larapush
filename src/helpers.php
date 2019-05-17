@@ -36,7 +36,7 @@ function larapush_remote_url($path)
 
 function larapush_url($url)
 {
-    return config('larapush.remote.prefix')."/{$url}";
+    return config('larapush.remote.suffix')."/{$url}";
 }
 
 function append_line_to_env(string $key, $value)
