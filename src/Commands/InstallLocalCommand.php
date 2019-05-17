@@ -62,7 +62,7 @@ final class InstallLocalCommand extends InstallerBootstrap
             'required|url'
         );
 
-        $this->setEnvironmentData();
+        $this->populateEnvironmentData();
         $bar->advance();
 
         $this->publishLarapushResources();
@@ -74,7 +74,7 @@ final class InstallLocalCommand extends InstallerBootstrap
         $this->allDone();
     }
 
-    protected function setEnvironmentData()
+    protected function populateEnvironmentData()
     {
         $this->bulkInfo(0, 'Setting .env values...', 1);
 

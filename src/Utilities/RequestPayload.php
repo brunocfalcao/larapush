@@ -62,8 +62,8 @@ final class RequestPayload
         try {
             $response = Zttp::withHeaders($this->headers)
                             ->{$this->verb}($url, $this->payload);
-        } catch (ConnectionException | RequestException $e) {
-            $exception = $e;
+        } catch (ConnectionException | RequestException $reqException) {
+            $exception = $reqException;
         }
 
         return new ResponsePayload($response ?? null, $exception ?? null);

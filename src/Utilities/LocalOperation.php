@@ -28,7 +28,7 @@ final class LocalOperation
     public function askRemoteToCheckEnvironment()
     {
         $response = ReSTCaller::asPost()
-                          ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                          ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
                           ->withHeader('Accept', 'application/json')
                           ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                           ->withPayload(['environments' => implode(',', app('config')->get('larapush.environment.reserved'))])
@@ -36,7 +36,7 @@ final class LocalOperation
 
         $this->checkResponseStatus($response);
 
-        return (bool) $response->payload['prompt'];
+        return (bool) $response->payload()['prompt'];
     }
 
     public function createRepository(string $transaction) : void
@@ -138,9 +138,9 @@ final class LocalOperation
 
         $latest_ctime = 0;
         $latest_dir = '';
-        $d = dir($path);
+        $directory = dir($path);
 
-        while (false !== ($entry = $d->read())) {
+        while (false !== ($entry = $directory->read())) {
             $filepath = "{$path}/{$entry}";
 
             if (is_dir($filepath) && filectime($filepath) > $latest_ctime) {
@@ -177,7 +177,7 @@ final class LocalOperation
     public function runPostScripts(string $transaction) : void
     {
         $response = ReSTCaller::asPost()
-                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
                       ->withHeader('Accept', 'application/json')
                       ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                       ->withPayload(['transaction' => $transaction])
@@ -189,7 +189,7 @@ final class LocalOperation
     public function deploy(string $transaction) : void
     {
         $response = ReSTCaller::asPost()
-                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
                       ->withHeader('Accept', 'application/json')
                       ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                       ->withPayload(['transaction' => $transaction])
@@ -201,7 +201,7 @@ final class LocalOperation
     public function runPreScripts(string $transaction) : void
     {
         $response = ReSTCaller::asPost()
-                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
                       ->withHeader('Accept', 'application/json')
                       ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                       ->withPayload(['transaction' => $transaction])
@@ -233,7 +233,7 @@ final class LocalOperation
     public function uploadCodebase(string $transaction) : void
     {
         $response = ReSTCaller::asPost()
-                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                      ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
                       ->withHeader('Accept', 'application/json')
                       ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                       ->withPayload(['transaction' => $transaction])
@@ -259,17 +259,19 @@ final class LocalOperation
     public function getAccessToken()
     {
         $response = ReSTCaller::asPost()
-                   ->withPayload(['grant_type'    => 'client_credentials',
-                                  'client_id'     => app('config')->get('larapush.oauth.client'),
-                                  'client_secret' => app('config')->get('larapush.oauth.secret'), ])
+                   ->withPayload([
+                      'grant_type' => 'client_credentials',
+                      'client_id' => app('config')->get('larapush.oauth.client'),
+                      'client_secret' => app('config')->get('larapush.oauth.secret'),
+                   ])
                    ->withHeader('Accept', 'application/json')
                    ->call(app('config')->get('larapush.remote.url').'/oauth/token');
 
         $this->checkAccessToken($response);
 
         $this->accessToken = new AccessToken(
-            $response->payload['expires_in'],
-            $response->payload['access_token']
+            $response->payload()['expires_in'],
+            $response->payload()['access_token']
         );
 
         return $this;
@@ -278,7 +280,7 @@ final class LocalOperation
     public function askRemoteForPreChecks() : void
     {
         $response = ReSTCaller::asPost()
-                  ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                  ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
                   ->withHeader('Accept', 'application/json')
                   ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                   ->call(larapush_remote_url('prechecks'));
@@ -289,7 +291,7 @@ final class LocalOperation
     public function ping() : void
     {
         $response = ReSTCaller::asPost()
-                  ->withHeader('Authorization', 'Bearer '.$this->accessToken->token)
+                  ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
                   ->withHeader('Accept', 'application/json')
                   ->withPayload(['larapush-token' => app('config')->get('larapush.token')])
                   ->call(larapush_remote_url('ping'));
@@ -299,14 +301,14 @@ final class LocalOperation
 
     private function checkResponseStatus(ResponsePayload $response) : void
     {
-        if (! $response->isOk || data_get($response->payload, 'error') != null) {
+        if (! $response->isOk() || data_get($response->payload(), 'error') != null) {
             throw new LocalException(get_response_payload_friendly_message($response));
         }
     }
 
     private function checkAccessToken(?ResponsePayload $response) : void
     {
-        if (! $response->isOk || data_get($response->payload, 'access_token') == null) {
+        if (! $response->isOk() || data_get($response->payload(), 'access_token') == null) {
             throw new AccessTokenException(get_response_payload_friendly_message($response));
         }
     }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Log;
 
 final class LocalException extends Exception
 {
-    public $message;
+    protected $message;
 
     public function __construct($message)
     {

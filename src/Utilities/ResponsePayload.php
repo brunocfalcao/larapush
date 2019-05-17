@@ -22,10 +22,10 @@ use Zttp\ZttpResponse;
  */
 final class ResponsePayload
 {
-    public $isOk = false;
-    public $exception = null;
-    public $response = null;
-    public $payload = null;
+    private $isOk = false;
+    private $exception = null;
+    private $response = null;
+    private $payload = null;
 
     public function __construct(ZttpResponse $response = null, ?\Exception $exception)
     {
@@ -51,5 +51,25 @@ final class ResponsePayload
             // Computation of the general result based on the ZttpResponse status.
             $this->isOk = $response->isOk() && $response->status() == 200;
         }
+    }
+
+    public function exception()
+    {
+        return $this->exception;
+    }
+
+    public function isOk()
+    {
+        return $this->isOk;
+    }
+
+    public function response()
+    {
+        return $this->response;
+    }
+
+    public function payload()
+    {
+        return $this->payload;
     }
 }

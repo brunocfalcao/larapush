@@ -14,7 +14,7 @@ namespace Brunocfalcao\Larapush\Utilities;
  */
 final class ScriptType
 {
-    const ARTISAN = 'artisan';
-    const CLASSMETHOD = 'class_method';
-    const SHELLCMD = 'shell_cmd';
+    public const ARTISAN = 'artisan';
+    public const CLASSMETHOD = 'class_method';
+    public const SHELLCMD = 'shell_cmd';
 }

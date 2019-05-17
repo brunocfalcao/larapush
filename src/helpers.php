@@ -79,10 +79,10 @@ if (! function_exists('larapush_rescue')) {
     {
         try {
             return $callback();
-        } catch (Throwable $e) {
-            report($e);
+        } catch (Throwable $exception) {
+            report($exception);
 
-            return $rescue($e);
+            return $rescue($exception);
         }
     }
 }
@@ -91,16 +91,16 @@ if (! function_exists('get_response_payload_friendly_message')) {
     function get_response_payload_friendly_message(ResponsePayload $response)
     {
         // In case a connection/request exception is active.
-        if ($response->exception !== null) {
-            return $response->exception->message.
+        if ($response->exception() !== null) {
+            return $response->exception()->message.
                ' (line '.
-               $response->exception->line.
+               $response->exception()->line.
                ') in '.
-               $response->exception->file;
+               $response->exception()->file;
         }
 
         // In case a response payload exists.
-        if (isset($response->payload)) {
+        if ($response->payload() != null) {
             $payload = (object) $response->payload;
 
             $message = 'Undefined response message. Please check the Laravel logs.';

@@ -21,8 +21,8 @@ final class RemoteOperation
 {
     use CanRunProcesses;
 
-    const PREPUSH = 'pre_scripts';
-    const POSTPUSH = 'post_scripts';
+    protected const PREPUSH = 'pre_scripts';
+    protected const POSTPUSH = 'post_scripts';
 
     public static function new(...$args)
     {
@@ -93,11 +93,7 @@ final class RemoteOperation
 
     private function runScript(array $command)
     {
-        $output = null;
-
         $script = new Script($command);
-        $output = $script->execute();
-
-        return $output;
+        return $script->execute();
     }
 }

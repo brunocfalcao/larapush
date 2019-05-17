@@ -29,11 +29,6 @@ final class InstallRemoteCommand extends InstallerBootstrap
 
     protected $description = 'Installs Larapush on your web server';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function handle()
     {
         parent::handle();
