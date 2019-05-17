@@ -3,7 +3,6 @@
 namespace Brunocfalcao\Larapush\Commands;
 
 use Brunocfalcao\Larapush\Utilities\Local;
-use Brunocfalcao\Larapush\Utilities\Remote;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
 
@@ -12,7 +11,6 @@ use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
  * Prepares, uploads and deploys your codebase to your web server.
  *
  * @category   Larapush
- * @package    brunocfalcao/larapush
  * @author     Bruno Falcao <bruno.falcao@laraning.com>
  * @copyright  2019 Bruno Falcao
  * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3

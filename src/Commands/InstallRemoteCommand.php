@@ -13,7 +13,6 @@ use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
  * Used to install Larapush in your web server.
  *
  * @category   Larapush
- * @package    brunocfalcao/larapush
  * @author     Bruno Falcao <bruno.falcao@laraning.com>
  * @copyright  2019 Bruno Falcao
  * @license    https://www.gnu.org/licenses/gpl-3.0.en.html GPL v3
@@ -41,7 +40,7 @@ final class InstallRemoteCommand extends InstallerBootstrap
 
         $this->steps = 5;
 
-        /**
+        /*
          * Laravel Passport is a key requirement for Larapush to work.
          * Therefore without having it installed in your web server this
          * package cannot work correctly.
@@ -56,7 +55,7 @@ final class InstallRemoteCommand extends InstallerBootstrap
         $this->bar = $this->output->createProgressBar($this->steps);
         $this->bar->start();
 
-        /**
+        /*
          * In case of a re-installation the old .env keys should be deleted.
          */
         $this->bulkInfo(2, 'Cleaning old .env larapush keys (if they exist)...', 1);
