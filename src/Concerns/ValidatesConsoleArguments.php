@@ -2,7 +2,7 @@
 
 namespace Brunocfalcao\Larapush\Concerns;
 
-/**
+/*
  * Trait used to allow a simpler rules validations in the commands.
  *
  * @category   Larapush

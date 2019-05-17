@@ -20,7 +20,6 @@ use Zttp\ZttpResponse;
  * @version    Release: 1.0
  * @link       http://www.github.com/brunocfalcao/larapush
  */
-
 final class ResponsePayload
 {
     public $isOk = false;

@@ -3,7 +3,7 @@
 use Illuminate\Support\Carbon;
 use Brunocfalcao\Larapush\Utilities\ResponsePayload;
 
-if (!function_exists('ascii_title')) {
+if (! function_exists('ascii_title')) {
     function ascii_title()
     {
         /*
@@ -19,7 +19,7 @@ if (!function_exists('ascii_title')) {
     }
 }
 
-if (!function_exists('capsule')) {
+if (! function_exists('capsule')) {
     function capsule(bool $result, $message = null, $payload = null)
     {
         $capsule = new stdClass();
@@ -31,50 +31,50 @@ if (!function_exists('capsule')) {
     }
 }
 
-if (!function_exists('larapush_remote_url')) {
+if (! function_exists('larapush_remote_url')) {
     function larapush_remote_url($path)
     {
         return app('config')->get('larapush.remote.url').
            larapush_url($path);
     }
-};
+}
 
-if (!function_exists('larapush_url')) {
+if (! function_exists('larapush_url')) {
     function larapush_url($url)
     {
         return config('larapush.remote.suffix')."/{$url}";
     }
-};
+}
 
-if (!function_exists('append_line_to_env')) {
+if (! function_exists('append_line_to_env')) {
     function append_line_to_env(string $key, $value)
     {
         return file_put_contents(base_path('.env'), PHP_EOL."{$key}={$value}", FILE_APPEND);
     }
 }
 
-if (!function_exists('response_payload')) {
+if (! function_exists('response_payload')) {
     function response_payload($payload = [], $statusCode = 200)
     {
         return response(json_encode($payload), $statusCode);
     }
 }
 
-if (!function_exists('larapush_storage_path')) {
+if (! function_exists('larapush_storage_path')) {
     function larapush_storage_path($path = null)
     {
         return app('config')->get('larapush.storage.path')."/{$path}";
     }
-};
+}
 
-if (!function_exists('generate_transaction_code')) {
+if (! function_exists('generate_transaction_code')) {
     function generate_transaction_code()
     {
         return date('Ymd-His').'-'.strtoupper(str_random(5));
     }
-};
+}
 
-if (!function_exists('larapush_rescue')) {
+if (! function_exists('larapush_rescue')) {
     function larapush_rescue(callable $callback, $rescue = null)
     {
         try {
@@ -85,9 +85,9 @@ if (!function_exists('larapush_rescue')) {
             return $rescue($e);
         }
     }
-};
+}
 
-if (!function_exists('get_response_payload_friendly_message')) {
+if (! function_exists('get_response_payload_friendly_message')) {
     function get_response_payload_friendly_message(ResponsePayload $response)
     {
         // In case a connection/request exception is active.
@@ -124,9 +124,9 @@ if (!function_exists('get_response_payload_friendly_message')) {
             return $message;
         }
     }
-};
+}
 
-if (!function_exists('glob_recursive')) {
+if (! function_exists('glob_recursive')) {
     function glob_recursive($pattern, $flags = 0)
     {
         $files = glob($pattern, $flags);
@@ -136,18 +136,18 @@ if (!function_exists('glob_recursive')) {
 
         return $files;
     }
-};
+}
 
-if (!function_exists('unix_separator_path')) {
+if (! function_exists('unix_separator_path')) {
     function unix_separator_path($path)
     {
         return str_replace(DIRECTORY_SEPARATOR, '/', $path);
     }
-};
+}
 
-if (!function_exists('timestamp_to_carbon')) {
+if (! function_exists('timestamp_to_carbon')) {
     function timestamp_to_carbon($timestamp)
     {
         return Carbon::createFromTimestamp($timestamp);
     }
-};
+}
