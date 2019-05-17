@@ -54,6 +54,6 @@ trait SharedInstallerActions
                     $message;
 
         $this->error("An error occurred! => $message");
-        exit();
+        exit;
     }
 }

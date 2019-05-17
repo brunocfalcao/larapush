@@ -103,7 +103,7 @@ final class LocalOperation
 
         if ($codebase->count() > 0) {
             // Transform codebase resource collection into a glob.
-            $codebase->transform(function ($item, $key) {
+            $codebase->transform(function ($item) {
                 return $item->realPath();
             });
 
@@ -140,7 +140,7 @@ final class LocalOperation
         $latest_dir = '';
         $directory = dir($path);
 
-        while (false !== ($entry = $directory->read())) {
+        while (($entry = $directory->read()) !== false) {
             $filepath = "{$path}/{$entry}";
 
             if (is_dir($filepath) && filectime($filepath) > $latest_ctime) {
@@ -260,9 +260,9 @@ final class LocalOperation
     {
         $response = ReSTCaller::asPost()
                    ->withPayload([
-                      'grant_type' => 'client_credentials',
-                      'client_id' => app('config')->get('larapush.oauth.client'),
-                      'client_secret' => app('config')->get('larapush.oauth.secret'),
+                       'grant_type' => 'client_credentials',
+                       'client_id' => app('config')->get('larapush.oauth.client'),
+                       'client_secret' => app('config')->get('larapush.oauth.secret'),
                    ])
                    ->withHeader('Accept', 'application/json')
                    ->call(app('config')->get('larapush.remote.url').'/oauth/token');

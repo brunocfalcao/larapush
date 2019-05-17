@@ -2,12 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Exceptions;
 
-use Exception;
+use Exception as ParentException;
 
-final class AccessTokenException extends Exception
+final class AccessTokenException extends ParentException
 {
-    public function __construct($message)
-    {
-        parent::__construct($message);
-    }
 }

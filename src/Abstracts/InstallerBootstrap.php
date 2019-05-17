@@ -27,11 +27,6 @@ abstract class InstallerBootstrap extends Command
 
     protected $steps;
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function handle()
     {
         // Clear output.

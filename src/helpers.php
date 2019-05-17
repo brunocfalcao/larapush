@@ -101,7 +101,7 @@ if (! function_exists('get_response_payload_friendly_message')) {
 
         // In case a response payload exists.
         if ($response->payload() != null) {
-            $payload = (object) $response->payload;
+            $payload = (object) $response->payload();
 
             $message = 'Undefined response message. Please check the Laravel logs.';
 

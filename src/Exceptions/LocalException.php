@@ -2,10 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Exceptions;
 
-use Exception;
+use Exception as ParentException;
 use Illuminate\Support\Facades\Log;
 
-final class LocalException extends Exception
+final class LocalException extends ParentException
 {
     protected $message;
 

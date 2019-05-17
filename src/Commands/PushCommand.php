@@ -25,11 +25,6 @@ final class PushCommand extends InstallerBootstrap
 
     protected $description = 'Pushes your codebase content to your web server';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function handle()
     {
         parent::handle();
@@ -85,7 +80,7 @@ final class PushCommand extends InstallerBootstrap
         if ($prompt) {
             $this->bulkInfo(1);
             if (! $this->confirm('ATTENTION! You are uploading your codebase to a reserved environment. Continue?')) {
-                exit();
+                exit;
             }
         }
     }
