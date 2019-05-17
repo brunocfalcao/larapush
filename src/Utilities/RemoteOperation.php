@@ -94,6 +94,7 @@ final class RemoteOperation
     private function runScript(array $command)
     {
         $script = new Script($command);
+
         return $script->execute();
     }
 }
