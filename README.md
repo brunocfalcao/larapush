@@ -13,10 +13,11 @@
 
 ### Features
 
-- Client <-> Server communications using Laravel Passport OAuth Client Access Grant tokens.
+- Client <-> Server communications using Laravel Passport OAuth Client Access Grant tokens (HTTP and not SSH).
 - Can run pre-scripts and post-scripts that you define (artisan commands, invokable classes, or custom methods).
 - Stores all output from your pre-scripts and post-scripts in folders inside your storage path.
 - Allows you to specify what codebase you want to upload (files, folders).
+- Allows you to have DELTA uploads, meaning only uploads the files that changed or are new.
 - Keeps all of your uploaded codebase inside versioned folders on your storage path.
 - Asks for a confirmation in case you are uploading to sensitive environments (like production).
 - Works on both UNIX and Windows web server operating systems.
@@ -43,13 +44,13 @@ Enter on your web server and run the following commands:
 composer require brunocfalcao/larapush
 ```
 
+Now paste the line from your previous web server installation, as an example:
 ```bash
 php artisan larapush:install-remote
 ```
 
 At the end, it will generate your command line that you will need to use to install it on your local computer.
 
-Like this example:
 ![Install on your web server](https://assets.brunofalcao.me/larapush/install-remote.gif)
 
 :exclamation: Copy+paste the one generated on your web server so you can use it later on your local installation.
@@ -64,7 +65,6 @@ composer require brunocfalcao/larapush
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
 ```
 
-Like this example:
 ![Install on your local computer](https://assets.brunofalcao.me/larapush/install-local.gif)
 
 The installer will prompt to insert your URL. Just add it in the FQDN format (e.g.: https://www.johnsmith.com).
