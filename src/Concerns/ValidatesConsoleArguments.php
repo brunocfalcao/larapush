@@ -2,6 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Concerns;
 
+use Illuminate\Support\Facades\Validator;
+
 /*
  * Trait used to allow a simpler rules validations in the commands.
  *
@@ -12,8 +14,6 @@ namespace Brunocfalcao\Larapush\Concerns;
  * @version    Release: 1.0
  * @link       http://www.github.com/brunocfalcao/larapush
  */
-use Illuminate\Support\Facades\Validator;
-
 trait ValidatesConsoleArguments
 {
     protected function validateOptions()

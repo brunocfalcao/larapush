@@ -30,7 +30,7 @@ final class Script
         switch ($this->type) {
             case 'artisan':
                 $error = Artisan::call($this->command);
-                if ($error != 0) {
+                if ($error !== 0) {
                     throw \Exception('There was an error on your Artisan command - '.Artisan::output());
                 }
 
@@ -39,7 +39,7 @@ final class Script
 
             case 'class_method':
                 if (class_exists($this->command)) {
-                    return (new $this->command)();
+                    return (new $this->command);
                 }
 
                 if (strpos($this->command, '@')) {

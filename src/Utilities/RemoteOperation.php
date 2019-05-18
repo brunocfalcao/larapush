@@ -55,17 +55,17 @@ final class RemoteOperation
         }
     }
 
-    public function runPostScripts(string $transaction) : void
+    public function runPostScripts(string $transaction): void
     {
         $this->runScripts(self::POSTPUSH, $transaction);
     }
 
-    public function runPreScripts(string $transaction) : void
+    public function runPreScripts(string $transaction): void
     {
         $this->runScripts(self::PREPUSH, $transaction);
     }
 
-    public function preChecks() : void
+    public function preChecks(): void
     {
         $storagePath = app('config')->get('larapush.storage.path');
         if (! is_dir($storagePath)) {
@@ -77,7 +77,7 @@ final class RemoteOperation
         }
     }
 
-    public function storeRepository(CodebaseRepository $repository) : void
+    public function storeRepository(CodebaseRepository $repository): void
     {
         larapush_rescue(function () use ($repository) {
             // Create a new transaction folder inside the larapush storage.
