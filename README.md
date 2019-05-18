@@ -44,7 +44,6 @@ Enter on your web server and run the following commands:
 composer require brunocfalcao/larapush
 ```
 
-Now paste the line from your previous web server installation, as an example:
 ```bash
 php artisan larapush:install-remote
 ```
@@ -60,6 +59,8 @@ On your <b>local development computer</b>, run the following commands:
 ```bash
 composer require brunocfalcao/larapush
 ```
+
+Now paste the line from your previous web server installation, as an example:
 
 ```bash
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
