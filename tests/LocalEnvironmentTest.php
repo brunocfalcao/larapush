@@ -2,6 +2,7 @@
 
 namespace Brunocfalcao\Larapush\Tests;
 
+use Brunocfalcao\Larapush\Utilities\CodebaseRepository;
 use Brunocfalcao\Larapush\Utilities\Local;
 
 class LocalEnvironmentTest extends TestCase
@@ -14,7 +15,7 @@ class LocalEnvironmentTest extends TestCase
         $this->artisan('larapush:install-remote');
 
         $transaction = generate_transaction_code();
-        Local::createRepository($transaction);
+        (new CodebaseRepository)->createRepository($transaction);
 
         // Verify if local repository was created, along with the runbook.json and the codebase.zip file.
         $transactionRepository = app('config')->get('larapush.storage.path').'/'.$transaction;

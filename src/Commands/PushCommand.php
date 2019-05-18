@@ -2,9 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
-use Brunocfalcao\Larapush\Utilities\Local;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
+use Brunocfalcao\Larapush\Utilities\CodebaseRepository;
+use Brunocfalcao\Larapush\Utilities\Local;
 
 /**
  * Larapush push command.
@@ -92,7 +93,7 @@ final class PushCommand extends InstallerBootstrap
         $this->bulkInfo(2, "Creating local environment codebase repository ({$this->transaction}){$suffix}...", 1);
 
         larapush_rescue(function () {
-            Local::createRepository($this->transaction);
+            (new CodebaseRepository)->createRepository($this->transaction);
         }, function ($exception) {
             $this->exception = $exception;
             $this->gracefullyExit();
