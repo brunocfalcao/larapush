@@ -27,11 +27,11 @@ final class ResponsePayload
     private $response = null;
     private $payload = null;
 
-    public function __construct(ZttpResponse $response = null, ?\Exception $exception)
+    public function __construct(?ZttpResponse $response = null, ?\Exception $exception)
     {
         // The native exception data in case a connection exception was raised.
         if (isset($exception)) {
-            $this->exception = (new \StdClass);
+            $this->exception = (new \StdClass());
             $this->exception->message = @$exception->getMessage();
             $this->exception->file = @$exception->getFile();
             $this->exception->line = @$exception->getLine();
@@ -45,7 +45,7 @@ final class ResponsePayload
         if ($response !== null) {
             // In case json data was returned, let's add to our payload attribute.
             if ($response->json() !== null) {
-                $this->payload = (new \StdClass);
+                $this->payload = (new \StdClass());
                 $this->payload = $response->json();
             }
             // Computation of the general result based on the ZttpResponse status.

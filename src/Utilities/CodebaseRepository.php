@@ -124,7 +124,7 @@ final class CodebaseRepository
                     $zip->each(function ($zipResource) use (&$toRemove, $codebaseResource) {
                         if ($zipResource->relativePath() == $codebaseResource->relativePath()) {
                             if ($zipResource->modifiedDate()->greaterThanOrEqualTo($codebaseResource->modifiedDate()) &&
-                                $codebaseResource->type() == 'file') {
+                                $codebaseResource->type() === 'file') {
                                 $toRemove = true;
                             }
 

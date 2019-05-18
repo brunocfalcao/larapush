@@ -29,7 +29,7 @@ final class RemoteOperation
         return new self(...$args);
     }
 
-    public function unzipCodebase(string $transaction) : void
+    public function unzipCodebase(string $transaction): void
     {
         if (Storage::disk('larapush')->exists("{$transaction}/codebase.zip")) {
             $zip = new ZipFile();
@@ -38,7 +38,7 @@ final class RemoteOperation
         }
     }
 
-    private function runScripts(string $type, string $transaction) : void
+    private function runScripts(string $type, string $transaction): void
     {
         if (Storage::disk('larapush')->exists("{$transaction}/runbook.json")) {
             $resource = json_decode(Storage::disk('larapush')->get("{$transaction}/runbook.json"));

@@ -142,16 +142,16 @@ final class LocalOperation
         $this->checkResponseStatus($response);
     }
 
-    private function checkResponseStatus(ResponsePayload $response) : void
+    private function checkResponseStatus(ResponsePayload $response): void
     {
-        if (! $response->isOk() || data_get($response->payload(), 'error') != null) {
+        if (! $response->isOk() || data_get($response->payload(), 'error') !== null) {
             throw new LocalException(get_response_payload_friendly_message($response));
         }
     }
 
-    private function checkAccessToken(?ResponsePayload $response) : void
+    private function checkAccessToken(?ResponsePayload $response): void
     {
-        if (! $response->isOk() || data_get($response->payload(), 'access_token') == null) {
+        if (! $response->isOk() || data_get($response->payload(), 'access_token') === null) {
             throw new AccessTokenException(get_response_payload_friendly_message($response));
         }
     }

@@ -19,7 +19,7 @@ trait SimplifiesConsoleOutput
         $this->bulkInfo(1, ascii_title(), 1);
     }
 
-    protected function bulkInfo(int $crBefore, string $message = null, int $crAfter = 0)
+    protected function bulkInfo(int $crBefore, ?string $message = null, int $crAfter = 0)
     {
         while ($crBefore > 0) {
             $this->info('');
