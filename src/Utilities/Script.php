@@ -40,6 +40,7 @@ final class Script
             case 'class_method':
                 if (class_exists($this->command)) {
                     $command = new $this->command();
+
                     return $command();
                 }
 
