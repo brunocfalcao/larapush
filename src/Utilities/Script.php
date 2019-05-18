@@ -39,7 +39,7 @@ final class Script
 
             case 'class_method':
                 if (class_exists($this->command)) {
-                    return (new $this->command);
+                    return new $this->command;
                 }
 
                 if (strpos($this->command, '@')) {
