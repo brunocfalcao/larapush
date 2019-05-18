@@ -2,9 +2,9 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Brunocfalcao\Larapush\Exceptions\LocalException;
-use Illuminate\Support\Facades\Storage;
 use PhpZip\ZipFile;
+use Illuminate\Support\Facades\Storage;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
 
 /**
  * Class that stores a codebase repository structure.
