@@ -15,9 +15,9 @@
 
 - Client <-> Server communications using Laravel Passport OAuth Client Access Grant tokens (HTTP and not SSH).
 - Can run pre-scripts and post-scripts that you define (artisan commands, invokable classes, or custom methods).
-- Stores all output from your pre-scripts and post-scripts in folders inside your storage path.
-- Allows you to specify what codebase you want to upload (files, folders).
-- Allows you to have DELTA uploads, meaning only uploads the files that changed or are new.
+- Choose what codebase you want to upload (files, folders).
+- Make delta uploads, so it only uploads the files that were updated or that are new!
+- Blacklist files so they can never be uploaded to your web server (e.g. .env).
 - Keeps all of your uploaded codebase inside versioned folders on your storage path.
 - Asks for a confirmation in case you are uploading to sensitive environments (like production).
 - Works on both UNIX and Windows web server operating systems.
