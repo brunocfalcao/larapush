@@ -60,11 +60,14 @@ final class CodebaseRepository
         $files = collect();
 
         collect($relativePaths)->each(function ($item) use (&$files) {
-            if (is_dir(base_path($item))) {
+
+            //info('Checking ' . $item . ' in base path ' . unix_separator_path(base_path($item)));
+
+            if (is_dir(unix_separator_path(base_path($item)))) {
                 $files = $files->merge(glob_recursive(base_path($item.'/*')));
             }
 
-            if (is_file(base_path($item))) {
+            if (is_file(unix_separator_path(base_path($item)))) {
                 $files = $files->merge(glob_recursive(base_path($item)));
             }
         });
@@ -87,7 +90,7 @@ final class CodebaseRepository
         $codebase = $this->getFileResources(app('config')->get('larapush.codebase'));
         $blacklist = $this->getFileResources(app('config')->get('larapush.blacklist'));
 
-        // Remove the blacklist resources from the codebase resources.
+        // Removes the blacklist resources from the codebase resources.
         $codebase = $codebase->reject(function ($resource) use ($blacklist) {
             $exists = false;
 
