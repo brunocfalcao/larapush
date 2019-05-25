@@ -2,9 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Structures;
 
-use Zttp\Zttp;
-use Zttp\ConnectionException;
+use Brunocfalcao\Larapush\Structures\ResponsePayload;
 use GuzzleHttp\Exception\RequestException;
+use Zttp\ConnectionException;
+use Zttp\Zttp;
 
 /**
  * Class that will store a request payload.

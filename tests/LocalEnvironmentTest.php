@@ -2,7 +2,7 @@
 
 namespace Brunocfalcao\Larapush\Tests;
 
-use Brunocfalcao\Larapush\Utilities\Local;
+use Brunocfalcao\Larapush\Services\Local;
 use Brunocfalcao\Larapush\Utilities\CodebaseRepository;
 
 class LocalEnvironmentTest extends TestCase

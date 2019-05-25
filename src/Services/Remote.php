@@ -2,6 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Services;
 
+use Brunocfalcao\Larapush\Services\RemoteOperation;
+
 /**
  * Main Class that will then call the static methods in the remote operation.
  *

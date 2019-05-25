@@ -2,9 +2,11 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use PhpZip\ZipFile;
-use Illuminate\Support\Facades\Storage;
 use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Structures\FileResource;
+use Brunocfalcao\Larapush\Structures\ZipResource;
+use Illuminate\Support\Facades\Storage;
+use PhpZip\ZipFile;
 
 /**
  * Class that stores a codebase repository structure.

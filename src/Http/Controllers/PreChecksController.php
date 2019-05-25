@@ -2,7 +2,7 @@
 
 namespace Brunocfalcao\Larapush\Http\Controllers;
 
-use Brunocfalcao\Larapush\Utilities\Remote;
+use Brunocfalcao\Larapush\Services\Remote;
 use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
 
 /**
