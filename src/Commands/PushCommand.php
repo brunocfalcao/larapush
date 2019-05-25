@@ -2,7 +2,7 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
-use Brunocfalcao\Larapush\Utilities\Local;
+use Brunocfalcao\Larapush\Services\Local;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Utilities\CodebaseRepository;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
