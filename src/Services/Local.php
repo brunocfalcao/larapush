@@ -2,8 +2,6 @@
 
 namespace Brunocfalcao\Larapush\Services;
 
-use Brunocfalcao\Larapush\Services\LocalOperation;
-
 /**
  * Main Class that will then call the static methods in the local operation.
  *

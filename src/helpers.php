@@ -1,7 +1,7 @@
 <?php
 
-use Brunocfalcao\Larapush\Structures\ResponsePayload;
 use Illuminate\Support\Carbon;
+use Brunocfalcao\Larapush\Structures\ResponsePayload;
 
 if (! function_exists('ascii_title')) {
     function ascii_title()
