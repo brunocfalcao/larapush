@@ -1,6 +1,6 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Structures;
 
 /**
  * Class that stores an OAuth access token.
@@ -12,7 +12,7 @@ namespace Brunocfalcao\Larapush\Utilities;
  * @version    Release: 1.0
  * @link       http://www.github.com/brunocfalcao/larapush
  */
-class AccessToken
+final class AccessToken
 {
     protected $expiresIn = null;
     protected $token = null;
@@ -22,12 +22,12 @@ class AccessToken
         [$this->expiresIn, $this->token] = [$expiresIn, $token];
     }
 
-    public function expiresIn()
+    public function expiresIn(): int
     {
         return $this->expiresIn;
     }
 
-    public function token()
+    public function token(): string
     {
         return $this->token;
     }

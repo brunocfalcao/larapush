@@ -1,10 +1,11 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Services;
 
-use Illuminate\Support\Facades\Storage;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
 use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Structures\AccessToken;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class that executes all operations contexted in your local web
@@ -102,13 +103,13 @@ final class LocalOperation
     public function getAccessToken()
     {
         $response = ReSTCaller::asPost()
-                   ->withPayload([
-                       'grant_type' => 'client_credentials',
-                       'client_id' => app('config')->get('larapush.oauth.client'),
-                       'client_secret' => app('config')->get('larapush.oauth.secret'),
-                   ])
-                   ->withHeader('Accept', 'application/json')
-                   ->call(app('config')->get('larapush.remote.url').'/oauth/token');
+                              ->withPayload([
+                                  'grant_type' => 'client_credentials',
+                                  'client_id' => app('config')->get('larapush.oauth.client'),
+                                  'client_secret' => app('config')->get('larapush.oauth.secret'),
+                              ])
+                              ->withHeader('Accept', 'application/json')
+                              ->call(app('config')->get('larapush.remote.url').'/oauth/token');
 
         $this->checkAccessToken($response);
 

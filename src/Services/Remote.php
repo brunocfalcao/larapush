@@ -1,9 +1,9 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Services;
 
 /**
- * Main Class that will then call the static methods in the local operation.
+ * Main Class that will then call the static methods in the remote operation.
  *
  * @category   Larapush
  * @author     Bruno Falcao <bruno.falcao@laraning.com>
@@ -12,10 +12,10 @@ namespace Brunocfalcao\Larapush\Utilities;
  * @version    Release: 1.0
  * @link       http://www.github.com/brunocfalcao/larapush
  */
-final class Local
+final class Remote
 {
     public static function __callStatic($method, $args)
     {
-        return LocalOperation::new()->{$method}(...$args);
+        return RemoteOperation::new()->{$method}(...$args);
     }
 }

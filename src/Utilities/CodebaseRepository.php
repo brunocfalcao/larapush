@@ -50,7 +50,7 @@ final class CodebaseRepository
             }
         } //end loop
 
-        return $latest_dir == '.' ? null : $latest_dir;
+        return $latest_dir === '.' ? null : $latest_dir;
     }
 
     private function getFileResources(array $relativePaths = [])
@@ -77,7 +77,7 @@ final class CodebaseRepository
 
     public function createRepository(string $transaction) : void
     {
-        if (count(app('config')->get('larapush.codebase')) == 0) {
+        if (count(app('config')->get('larapush.codebase')) === 0) {
             throw new LocalException('No files or folders identified to upload. Please check your configuration file');
         }
 
@@ -90,7 +90,7 @@ final class CodebaseRepository
             $exists = false;
 
             $blacklist->each(function ($item) use (&$exists, $resource) {
-                if ($item->realPath() == $resource->realPath()) {
+                if ($item->realPath() === $resource->realPath()) {
                     $exists = true;
                 }
             });
@@ -98,7 +98,7 @@ final class CodebaseRepository
             return $exists;
         })->values();
 
-        if (app('config')->get('larapush.delta_upload') == true) {
+        if (app('config')->get('larapush.delta_upload') === true) {
             $latestFolder = $this->getLatestTransactionFolderName();
 
             // If exists, open the zip file, and compare with the files we have.
@@ -116,13 +116,13 @@ final class CodebaseRepository
 
                 // Remove all the resources that have the same datetime as the zip. Just the modified ones remain + new ones.
                 $codebase = $codebase->reject(function ($codebaseResource) use ($zip) {
-                    if ($codebaseResource->type() == 'folder') {
+                    if ($codebaseResource->type() === 'folder') {
                         return false;
                     }
 
                     $toRemove = false;
                     $zip->each(function ($zipResource) use (&$toRemove, $codebaseResource) {
-                        if ($zipResource->relativePath() == $codebaseResource->relativePath()) {
+                        if ($zipResource->relativePath() === $codebaseResource->relativePath()) {
                             if ($zipResource->modifiedDate()->greaterThanOrEqualTo($codebaseResource->modifiedDate()) &&
                                 $codebaseResource->type() === 'file') {
                                 $toRemove = true;

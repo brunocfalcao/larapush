@@ -1,6 +1,6 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Services;
 
 use PhpZip\ZipFile;
 use Illuminate\Support\Facades\Storage;

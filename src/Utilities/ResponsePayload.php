@@ -27,7 +27,7 @@ final class ResponsePayload
     private $response = null;
     private $payload = null;
 
-    public function __construct(?ZttpResponse $response = null, ?\Exception $exception)
+    public function __construct(?ZttpResponse $response, ?\Exception $exception)
     {
         // The native exception data in case a connection exception was raised.
         if (isset($exception)) {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Structures;
 
 use Illuminate\Support\Str;
 
 /**
- * Class that stores a file resource structure.
+ * Class that stores a file resource structure, fetched normally from a glob.
  *
  * @category   Larapush
  * @author     Bruno Falcao <bruno.falcao@laraning.com>
@@ -25,7 +25,7 @@ class FileResource
     public function __construct(string $realPath)
     {
         if (is_file($realPath) || is_dir($realPath)) {
-            // Apply transformations.
+            // Apply path and datetime transformations.
             $this->realPath = unix_separator_path($realPath);
             $this->relativePath = unix_separator_path(substr($realPath, strlen(base_path()) + 1));
             $this->modifiedDate = timestamp_to_carbon(filemtime($this->realPath));

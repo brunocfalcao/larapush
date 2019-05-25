@@ -1,9 +1,10 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Structures;
 
 /**
- * Class that stores the script type constants.
+ * Class that stores the script type constants defined in your larapush.php
+ * configuration file.
  *
  * @category   Larapush
  * @author     Bruno Falcao <bruno.falcao@laraning.com>
@@ -14,7 +15,22 @@ namespace Brunocfalcao\Larapush\Utilities;
  */
 final class ScriptType
 {
+    /**
+     * Artisan command.
+     * E.g.: 'optimize:clear'.
+     */
     public const ARTISAN = 'artisan';
+
+    /**
+     * Class method.
+     * E.g.: 'myclass@mymethod'.
+     * E.g.: MyClass::class (will call the magic method __invoke).
+     */
     public const CLASSMETHOD = 'class_method';
+
+    /**
+     * A shell command.
+     * E.g.: 'composer update'.
+     */
     public const SHELLCMD = 'shell_cmd';
 }
