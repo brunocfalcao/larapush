@@ -1,6 +1,6 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Utilities;
+namespace Brunocfalcao\Larapush\Structures;
 
 use Zttp\ZttpResponse;
 
