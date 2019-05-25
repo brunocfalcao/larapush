@@ -2,11 +2,11 @@
 
 namespace Brunocfalcao\Larapush\Services;
 
-use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
-use Brunocfalcao\Larapush\Structures\AccessToken;
-use Brunocfalcao\Larapush\Utilities\ReSTCaller;
 use Illuminate\Support\Facades\Storage;
+use Brunocfalcao\Larapush\Utilities\ReSTCaller;
+use Brunocfalcao\Larapush\Structures\AccessToken;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
 
 /**
  * Class that executes all operations contexted in your local web
