@@ -88,7 +88,7 @@ final class PushCommand extends InstallerBootstrap
 
     protected function createLocalRepository()
     {
-        $suffix = app('config')->get('larapush.delta_upload') == true ? ' with changed or new files only' : '';
+        $suffix = app('config')->get('larapush.delta_upload') === true ? ' with changed or new files only' : '';
 
         $this->bulkInfo(2, "Creating local environment codebase repository ({$this->transaction}){$suffix}...", 1);
 

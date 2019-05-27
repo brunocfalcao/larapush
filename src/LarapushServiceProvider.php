@@ -26,7 +26,7 @@ final class LarapushServiceProvider extends ServiceProvider
     {
         $this->publishConfiguration();
 
-        if (config('larapush.type') == 'remote' && class_exists('\Laravel\Passport\Passport')) {
+        if (config('larapush.type') === 'remote' && class_exists('\Laravel\Passport\Passport')) {
             $this->loadRemoteRoutes();
         }
 

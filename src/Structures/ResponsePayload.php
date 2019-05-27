@@ -32,9 +32,24 @@ final class ResponsePayload
         // The native exception data in case a connection exception was raised.
         if (isset($exception)) {
             $this->exception = (new \StdClass());
-            $this->exception->message = @$exception->getMessage();
-            $this->exception->file = @$exception->getFile();
-            $this->exception->line = @$exception->getLine();
+
+            try {
+                $this->exception->message = $exception->getMessage();
+            } catch (\Exception $e) {
+                $this->exception->message = null;
+            }
+
+            try {
+                $this->exception->file = $exception->getFile();
+            } catch (\Exception $e) {
+                $this->exception->file = null;
+            }
+
+            try {
+                $this->exception->line = $exception->getLine();
+            } catch (\Exception $e) {
+                $this->exception->line = null;
+            }
         }
 
         // The native ZttpResponse object (with or without data, doesn't matter).
