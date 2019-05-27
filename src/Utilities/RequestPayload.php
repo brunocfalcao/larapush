@@ -2,11 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Brunocfalcao\Larapush\Structures\ResponsePayload;
-use GuzzleHttp\Exception\RequestException;
-use Zttp\ConnectionException;
 use Zttp\Zttp;
-use sixlive\DotenvEditor\DotenvEditor;
+use Zttp\ConnectionException;
+use GuzzleHttp\Exception\RequestException;
+use Brunocfalcao\Larapush\Structures\ResponsePayload;
 
 /**
  * Class that will store a request payload.
