@@ -127,10 +127,7 @@ return [
         */
 
         'post_scripts' => [
-            ['cache:clear',  ScriptType::ARTISAN],
-            ['config:clear', ScriptType::ARTISAN],
-            ['view:clear',   ScriptType::ARTISAN],
-            ['route:clear',  ScriptType::ARTISAN],
+            ['optimize:clear',  ScriptType::ARTISAN]
         ],
     ],
 
