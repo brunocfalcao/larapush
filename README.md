@@ -13,21 +13,14 @@
 
 ### Features
 
-- Client <-> Server communications using Laravel Passport OAuth Client Access Grant tokens (HTTP and not SSH).
-- Can run pre-scripts and post-scripts that you define (artisan commands, invokable classes, or custom methods).
+- Client <-> Server communications using HTTP. No need to have SSH access!
 - Choose what codebase you want to upload (files, folders).
-- Make delta uploads, so it only uploads the files that were updated or that are new!
+- Run pre-scripts and post-scripts that you define (artisan commands, invokable classes, or custom methods).
+- You can choose to upload only modified files, or all all files inside your codebase.
 - Blacklist files so they can never be uploaded to your web server (e.g. .env).
-- Keeps all of your uploaded codebase inside versioned folders on your storage path.
-- Asks for a confirmation in case you are uploading to sensitive environments (like production).
-- Works on both UNIX and Windows web server operating systems.
-
-### Security above all
-Larapush was developed taking security very seriously. At the end, anyone that knows your endpoint would be able to upload a malicious codebase to your web server. That's why Larapush uses OAuth client grant access tokens for each of the HTTP transactions that are handshaken between your web server and your local computer. At the end of the HTTP transaction, the client access token is marked as used, so it cannot be used again.
-
-When you install Larapush on your web server, it installs Laravel Passport and generates a specific client token that will be unique between your web server and your local computer. Henceforth any transaction between your local computer and your web server needs to first request a new client grant token and then use that token on the respective HTTP call. Additionally there is also a token that is passed on each request that needs to be the same between your local computer and the web server. If not, the transaction aborts in error.
-<br/><br/>
-All of this is done automatically each time you push your codebase. Nice and smooth!
+- Keeps all of your uploaded codebase versions backup on your storage path.
+- Get prompted in case you are uploading to production environments.
+- Works on both UNIX and Windows web servers.
 
 ### Requirements
 > Database is only needed in your <b>web server</b> (Laravel Passport will be installed) <br>
@@ -151,6 +144,13 @@ output_pre_scripts.log
 output_post_scripts.log
 ```
 Those are the console exports of the scripts that ran on each of your codebase push. So, in case you are running scripts you will see your console output there. Nice, heim? :)
+
+### Security above all
+Larapush was developed taking security very seriously. At the end, anyone that knows your endpoint would be able to upload a malicious codebase to your web server. That's why Larapush uses OAuth client grant access tokens for each of the HTTP transactions that are handshaken between your web server and your local computer. At the end of the HTTP transaction, the client access token is marked as used, so it cannot be used again.
+
+When you install Larapush on your web server, it installs Laravel Passport and generates a specific client token that will be unique between your web server and your local computer. Henceforth any transaction between your local computer and your web server needs to first request a new client grant token and then use that token on the respective HTTP call. Additionally there is also a token that is passed on each request that needs to be the same between your local computer and the web server. If not, the transaction aborts in error.
+<br/><br/>
+All of this is done automatically each time you push your codebase. Nice and smooth!
 
 ### Security
 If you find any security related issue please send me a direct email.
