@@ -127,7 +127,7 @@ return [
         */
 
         'post_scripts' => [
-            ['optimize:clear',  ScriptType::ARTISAN]
+            ['optimize:clear',  ScriptType::ARTISAN],
         ],
     ],
 
