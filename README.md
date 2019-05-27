@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="http://assets.brunofalcao.me/larapush/github_logo.jpg" alt="Larapush logo" width="300">
+    <img src="https://cdn1.imggmi.com/uploads/2019/5/28/286c313591e09f2952bb312e8eb26586-full.jpg" alt="Larapush logo" width="300">
 </p>
 <br/>
 <p align="center">
