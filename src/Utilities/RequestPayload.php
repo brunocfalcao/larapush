@@ -1,10 +1,12 @@
 <?php
 
-namespace Brunocfalcao\Larapush\Structures;
+namespace Brunocfalcao\Larapush\Utilities;
 
-use Zttp\Zttp;
-use Zttp\ConnectionException;
+use Brunocfalcao\Larapush\Structures\ResponsePayload;
 use GuzzleHttp\Exception\RequestException;
+use Zttp\ConnectionException;
+use Zttp\Zttp;
+use sixlive\DotenvEditor\DotenvEditor;
 
 /**
  * Class that will store a request payload.
@@ -61,6 +63,7 @@ final class RequestPayload
     {
         try {
             $response = Zttp::withHeaders($this->headers)
+                            ->withOptions(['verify' => app('config')->get('larapush.curl_ssl')])
                             ->{$this->verb}($url, $this->payload);
         } catch (ConnectionException | RequestException $reqException) {
             $exception = $reqException;

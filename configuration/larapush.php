@@ -232,4 +232,20 @@ return [
     */
 
     'token' => env('LARAPUSH_TOKEN'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | CURL SSL option
+    |--------------------------------------------------------------------------
+    |
+    | In case you don't have a TLS HTTP connection to your server, you can
+    | can disable your CURL TLS/SSL verification.
+    | Just add the following LARAPUSH_CURL_SSL=false on your .env file.
+    |
+    | More information on the CURL SSL/TLS verify option:
+    | https://guzzle.readthedocs.io/en/latest/request-options.html#verify
+    |
+    */
+
+    'curl_ssl' => env('LARAPUSH_CURL_SSL', true),
 ];

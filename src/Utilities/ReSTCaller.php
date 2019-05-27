@@ -2,7 +2,7 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Brunocfalcao\Larapush\Structures\RequestPayload;
+use Brunocfalcao\Larapush\Utilities\RequestPayload;
 
 /**
  * Main Class that is used for local REsT calls.
