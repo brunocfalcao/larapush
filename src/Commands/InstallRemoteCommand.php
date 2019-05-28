@@ -21,9 +21,15 @@ use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
  */
 final class InstallRemoteCommand extends InstallerBootstrap
 {
-    private $client;
+    protected $client;
 
-    private $secret;
+    protected $secret;
+
+    protected $bar;
+
+    protected $token;
+
+    protected $exception;
 
     protected $signature = 'larapush:install-remote';
 

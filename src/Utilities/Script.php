@@ -4,6 +4,7 @@ namespace Brunocfalcao\Larapush\Utilities;
 
 use Illuminate\Support\Facades\Artisan;
 use Brunocfalcao\Larapush\Concerns\CanRunProcesses;
+use \Exception;
 
 /**
  * Class that executes scripts in the web server.
@@ -19,6 +20,10 @@ final class Script
 {
     use CanRunProcesses;
 
+    protected $type;
+
+    protected $command;
+
     public function __construct(array $scriptPayload)
     {
         $this->type = $scriptPayload[1];
@@ -31,7 +36,7 @@ final class Script
             case 'artisan':
                 $error = Artisan::call($this->command);
                 if ($error !== 0) {
-                    throw \Exception('There was an error on your Artisan command - '.Artisan::output());
+                    throw new Exception('There was an error on your Artisan command - '.Artisan::output());
                 }
 
                 return Artisan::output();

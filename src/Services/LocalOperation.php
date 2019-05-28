@@ -161,6 +161,6 @@ final class LocalOperation
 
     public static function new(...$args)
     {
-        return new self(...$args);
+        return new self;
     }
 }

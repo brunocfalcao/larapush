@@ -31,7 +31,7 @@ final class ResponsePayload
     {
         // The native exception data in case a connection exception was raised.
         if (isset($exception)) {
-            $this->exception = (new \StdClass());
+            $this->exception = (new \stdClass());
 
             try {
                 $this->exception->message = $exception->getMessage();
@@ -60,7 +60,7 @@ final class ResponsePayload
         if ($response !== null) {
             // In case json data was returned, let's add to our payload attribute.
             if ($response->json() !== null) {
-                $this->payload = (new \StdClass());
+                $this->payload = (new \stdClass());
                 $this->payload = $response->json();
             }
             // Computation of the general result based on the ZttpResponse status.

@@ -18,6 +18,8 @@ use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
  */
 final class InstallLocalCommand extends InstallerBootstrap
 {
+    protected $url;
+
     protected $messages = [
         'client.required' => 'The --client option is required.',
         'client.integer'  => 'The --client option needs to be an integer.',

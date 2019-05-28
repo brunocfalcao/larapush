@@ -170,7 +170,7 @@ final class CodebaseRepository
 
         collect($glob)->each(function ($item) use (&$zipFile) {
             if (is_dir($item)) {
-                $zipFile->addEmptyDir(substr($item, strlen(base_path()) + 1), $item);
+                $zipFile->addEmptyDir(substr($item, strlen(base_path()) + 1));
             }
 
             if (is_file($item)) {

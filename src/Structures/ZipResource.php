@@ -18,7 +18,10 @@ use Illuminate\Support\Str;
 class ZipResource
 {
     protected $modifiedDate = null;
+
     protected $relativePath = null;
+
+    protected $realPath;
 
     public function __construct(ZipInfo $zipInfo)
     {
