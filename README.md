@@ -134,7 +134,7 @@ That code between parenthesis is the transaction code. If you navigate to your s
 
 Here is an example of the folders location:
 <br>
-![Codebase transaction folders](https://assets.brunofalcao.me/larapush/storage.jpg)
+![Codebase transaction folders](https://assets.brunofalcao.me/img2.jpg)
 
 In your web server it works exactly the same way. Additionally on each of the folder you might see also 2 files:
 ```bash
