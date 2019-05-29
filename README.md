@@ -59,9 +59,7 @@ Now paste the line from your previous web server installation <b>to your local c
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
 ```
 
-![Install on your local computer](https://assets.brunofalcao.me/larapush/install-local.gif)
-
-The installer will prompt to insert your URL. Just add it in the FQDN format (e.g.: https://www.johnsmith.com).
+The installer will prompt to insert your web server URL. Just add it in the FQDN format (e.g.: https://www.johnsmith.com).
 
 All done! If it goes well, you should see:
 
