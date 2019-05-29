@@ -31,7 +31,7 @@
 
 :exclamation: In order to generate your OAuth client and token, you need to first install Larapush on your web server!
 
-Enter on your web server and run the following commands:
+Log in into your web server and run the following commands:
 
 ```bash
 composer require brunocfalcao/larapush
@@ -41,11 +41,11 @@ composer require brunocfalcao/larapush
 php artisan larapush:install-remote
 ```
 
-At the end, it will generate your command line that you will need to use to install it on your local computer.
+At the end, it will generate your command line that you will need to use to install it on your local computer. As example:
 
 ![](https://assets.waygou.com/img1.jpg)
 
-:exclamation: Copy+paste the one generated on your web server so you can use it later on your local installation.
+:exclamation: Now copy+paste the one generated on your web server so you can use it later on your local installation.
 
 On your <b>local development computer</b>, run the following commands:
 
@@ -61,7 +61,7 @@ php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQ
 
 The installer will prompt to insert your web server URL. Just add it in the FQDN format (e.g.: https://www.johnsmith.com).
 
-All done! If it goes well, you should see:
+The installation completes you should see:
 
 ```bash
 All good! Now you can push your codebase to your web server!
