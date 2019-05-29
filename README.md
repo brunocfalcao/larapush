@@ -53,7 +53,7 @@ On your <b>local development computer</b>, run the following commands:
 composer require brunocfalcao/larapush
 ```
 
-Now paste the line from your previous web server installation, as an example:
+Now paste the line from your previous web server installation <b>to your local computer prompt</b>. Here is an example:
 
 ```bash
 php artisan larapush:install-local --client=4 --secret=5DrehY2gjPWTPL4rxzQwseHiQHWq8FXaH0Y --token=WXD2W6ZVK5
