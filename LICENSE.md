@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) Bruno Falcao <bruno.falcao@brunofalcao.me>
+Copyright (c) Bruno Falcao <bruno.c.falcao@brunofalcao.me>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,1 +1,10 @@
-tests/disk
+vendor/
+node_modules/
+npm-debug.log
+.sass-cache/
+public/storage
+public/hot
+storage/*.key
+.env.*.php
+.env.php
+.env
