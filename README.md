@@ -43,7 +43,7 @@ php artisan larapush:install-remote
 
 At the end, it will generate your command line that you will need to use to install it on your local computer.
 
-![Install on your web server](https://assets.brunofalcao.me/larapush/install-remote.gif)
+![](https://assets.waygou.com/img1.jpg)
 
 :exclamation: Copy+paste the one generated on your web server so you can use it later on your local installation.
 
