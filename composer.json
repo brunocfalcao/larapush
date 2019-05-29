@@ -21,7 +21,7 @@
         "illuminate/support": "~5.8.0",
         "kitetail/zttp": "^0.5.0",
         "sixlive/dotenv-editor": "^1.2",
-        "brunocfalcao/helpers": "^0.1",
+        "brunocfalcao/helpers": "^1.0",
         "nelexa/zip": "^3.1"
     },
     "require-dev": {
