@@ -16,7 +16,7 @@
 - Client <-> Server communications using HTTP. No need to have SSH access!
 - Choose what codebase you want to upload (files, folders).
 - Run pre-scripts and post-scripts that you define (artisan commands, invokable classes, or custom methods).
-- You can choose to upload only modified files, or all all files inside your codebase.
+- You can choose to upload only modified files, or all files inside your codebase.
 - Blacklist files so they can never be uploaded to your web server (e.g. .env).
 - Keeps all of your uploaded codebase versions backup on your storage path.
 - Get prompted in case you are uploading to production environments.
