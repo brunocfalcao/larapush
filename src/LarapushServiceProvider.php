@@ -2,14 +2,13 @@
 
 namespace Brunocfalcao\Larapush;
 
-use Brunocfalcao\Larapush\Commands\InstallLocalCommand;
-use Brunocfalcao\Larapush\Commands\InstallRemoteCommand;
-use Brunocfalcao\Larapush\Commands\PushCommand;
-use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Brunocfalcao\Larapush\Commands\PushCommand;
+use Brunocfalcao\Larapush\Commands\InstallLocalCommand;
+use Brunocfalcao\Larapush\Commands\InstallRemoteCommand;
 use Laravel\Passport\Http\Middleware\CheckClientCredentials;
-use Laravel\Passport\Passport;
 
 /**
  * Class that bootstraps Larapush service provider.

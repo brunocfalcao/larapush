@@ -2,10 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
-use Laravel\Passport\Client;
 use Illuminate\Support\Facades\DB;
 use sixlive\DotenvEditor\DotenvEditor;
-use Illuminate\Support\Facades\Artisan;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 
 /**
