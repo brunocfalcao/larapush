@@ -124,7 +124,7 @@ final class InstallRemoteCommand extends InstallerBootstrap
         $appName = 'Larapush Grant Client';
 
         larapush_rescue(function () use ($appName) {
-            $this->runProcess("php artisan passport:client --client --name=\"{$appName}\" --quiet", getcwd());
+            $this->runProcess("php artisan passport:client --client --name=\"{$appName}\" --quiet");
         }, function ($exception) {
             $this->exception = $exception;
             $this->gracefullyExit();

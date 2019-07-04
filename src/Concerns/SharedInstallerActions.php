@@ -2,6 +2,7 @@
 
 namespace Brunocfalcao\Larapush\Concerns;
 
+use Illuminate\Support\Facades\Artisan;
 use sixlive\DotenvEditor\DotenvEditor;
 
 /**
@@ -25,7 +26,9 @@ trait SharedInstallerActions
     protected function clearConfigurationCache()
     {
         $this->bulkInfo(2, 'Cleaning Configuration cache...', 1);
-        $this->runProcess('php artisan config:clear --quiet', getcwd());
+        Artisan::call('config:clear --quiet');
+
+        //$this->runProcess('php artisan config:clear -v');
     }
 
     protected function unsetEnvironmentData()
