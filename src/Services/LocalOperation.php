@@ -2,7 +2,6 @@
 
 namespace Brunocfalcao\Larapush\Services;
 
-use Illuminate\Support\Facades\Storage;
 use Brunocfalcao\Larapush\Utilities\ReSTCaller;
 use Brunocfalcao\Larapush\Structures\AccessToken;
 use Brunocfalcao\Larapush\Exceptions\LocalException;
