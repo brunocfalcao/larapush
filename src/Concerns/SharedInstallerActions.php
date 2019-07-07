@@ -27,8 +27,6 @@ trait SharedInstallerActions
     {
         $this->bulkInfo(2, 'Cleaning Configuration cache...', 1);
         Artisan::call('config:clear --quiet');
-
-        //$this->runProcess('php artisan config:clear -v');
     }
 
     protected function unsetEnvironmentData()
