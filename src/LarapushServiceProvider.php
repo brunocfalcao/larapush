@@ -57,7 +57,7 @@ final class LarapushServiceProvider extends ServiceProvider
         // Load Larapush routes using the api middleware.
         Route::as('larapush.')
              ->middleware('same-token', 'client')
-             ->namespace('Brunocfalcao\Larapush\Http\Controllers')
+             //->namespace('Brunocfalcao\Larapush\Http\Controllers')
              ->prefix(app('config')->get('larapush.remote.suffix'))
              ->group(__DIR__.'/../routes/api.php');
 
