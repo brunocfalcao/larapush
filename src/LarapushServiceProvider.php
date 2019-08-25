@@ -35,12 +35,12 @@ final class LarapushServiceProvider extends ServiceProvider
 
     private function registerStorage()
     {
-        $this->app['config']->set('filesystems.disks', [
+        $this->app['config']->set('filesystems.disks', array_merge([
             'larapush' => [
                 'driver' => 'local',
                 'root' => app('config')->get('larapush.storage.path'),
             ],
-        ]);
+        ], $this->app['config']->get('filesystems.disks')));
     }
 
     protected function publishConfiguration()
