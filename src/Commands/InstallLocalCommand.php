@@ -2,8 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
-use sixlive\DotenvEditor\DotenvEditor;
 use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
+use sixlive\DotenvEditor\DotenvEditor;
 
 /**
  * Larapush local computer installation command.

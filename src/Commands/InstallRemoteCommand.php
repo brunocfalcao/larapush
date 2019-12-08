@@ -2,9 +2,9 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
+use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Illuminate\Support\Facades\DB;
 use sixlive\DotenvEditor\DotenvEditor;
-use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 
 /**
  * Larapush web server installation command.

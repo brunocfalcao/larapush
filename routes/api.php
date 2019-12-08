@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Brunocfalcao\Larapush\Http\Controllers\PingController;
+use Brunocfalcao\Larapush\Http\Controllers\CheckEnvironmentController;
 use Brunocfalcao\Larapush\Http\Controllers\DeployController;
-use Brunocfalcao\Larapush\Http\Controllers\UploadController;
+use Brunocfalcao\Larapush\Http\Controllers\PingController;
+use Brunocfalcao\Larapush\Http\Controllers\PostScriptsController;
 use Brunocfalcao\Larapush\Http\Controllers\PreChecksController;
 use Brunocfalcao\Larapush\Http\Controllers\PreScriptsController;
-use Brunocfalcao\Larapush\Http\Controllers\PostScriptsController;
-use Brunocfalcao\Larapush\Http\Controllers\CheckEnvironmentController;
+use Brunocfalcao\Larapush\Http\Controllers\UploadController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
