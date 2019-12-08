@@ -4,7 +4,7 @@ namespace Brunocfalcao\Larapush\Concerns;
 
 use Illuminate\Support\Facades\Validator;
 
-/*
+/**
  * Trait used to allow a simpler rules validations in the commands.
  *
  * @category   Larapush
