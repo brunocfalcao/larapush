@@ -2,11 +2,11 @@
 
 namespace Brunocfalcao\Larapush\Abstracts;
 
-use Illuminate\Console\Command;
 use Brunocfalcao\Larapush\Concerns\CanRunProcesses;
 use Brunocfalcao\Larapush\Concerns\SharedInstallerActions;
 use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
 use Brunocfalcao\Larapush\Concerns\ValidatesConsoleArguments;
+use Illuminate\Console\Command;
 
 /**
  * Parent class used for the installer commands.

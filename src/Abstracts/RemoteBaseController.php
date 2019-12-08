@@ -2,8 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Abstracts;
 
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Parent class used for all Remove Controller classes.
