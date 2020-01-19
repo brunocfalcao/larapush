@@ -2,11 +2,11 @@
 
 namespace Brunocfalcao\Larapush\Services;
 
-use Brunocfalcao\Larapush\Utilities\ReSTCaller;
-use Brunocfalcao\Larapush\Structures\AccessToken;
-use Brunocfalcao\Larapush\Exceptions\LocalException;
-use Brunocfalcao\Larapush\Structures\ResponsePayload;
 use Brunocfalcao\Larapush\Exceptions\AccessTokenException;
+use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Structures\AccessToken;
+use Brunocfalcao\Larapush\Structures\ResponsePayload;
+use Brunocfalcao\Larapush\Utilities\ReSTCaller;
 
 /**
  * Class that executes all operations contexted in your local web
@@ -39,7 +39,7 @@ final class LocalOperation
         return (bool) $response->payload()['prompt'];
     }
 
-    public function runPostScripts(string $transaction) : void
+    public function runPostScripts(string $transaction): void
     {
         $response = ReSTCaller::asPost()
                       ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
@@ -51,7 +51,7 @@ final class LocalOperation
         $this->checkResponseStatus($response);
     }
 
-    public function deploy(string $transaction) : void
+    public function deploy(string $transaction): void
     {
         $response = ReSTCaller::asPost()
                       ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
@@ -63,7 +63,7 @@ final class LocalOperation
         $this->checkResponseStatus($response);
     }
 
-    public function runPreScripts(string $transaction) : void
+    public function runPreScripts(string $transaction): void
     {
         $response = ReSTCaller::asPost()
                       ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
@@ -75,7 +75,7 @@ final class LocalOperation
         $this->checkResponseStatus($response);
     }
 
-    public function uploadCodebase(string $transaction) : void
+    public function uploadCodebase(string $transaction): void
     {
         $response = ReSTCaller::asPost()
                       ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
@@ -89,7 +89,7 @@ final class LocalOperation
         $this->checkResponseStatus($response);
     }
 
-    public function preChecks() : void
+    public function preChecks(): void
     {
         $storagePath = app('config')->get('larapush.storage.path');
         if (! is_dir($storagePath)) {
@@ -122,7 +122,7 @@ final class LocalOperation
         return $this;
     }
 
-    public function askRemoteForPreChecks() : void
+    public function askRemoteForPreChecks(): void
     {
         $response = ReSTCaller::asPost()
                   ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())
@@ -133,7 +133,7 @@ final class LocalOperation
         $this->checkResponseStatus($response);
     }
 
-    public function ping() : void
+    public function ping(): void
     {
         $response = ReSTCaller::asPost()
                   ->withHeader('Authorization', 'Bearer '.$this->accessToken->token())

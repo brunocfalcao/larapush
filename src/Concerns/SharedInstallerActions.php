@@ -2,8 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Concerns;
 
-use sixlive\DotenvEditor\DotenvEditor;
 use Illuminate\Support\Facades\Artisan;
+use sixlive\DotenvEditor\DotenvEditor;
 
 /**
  * Trait used to share common functionality between the installer commands.

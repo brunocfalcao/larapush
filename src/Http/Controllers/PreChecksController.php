@@ -2,8 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Http\Controllers;
 
-use Brunocfalcao\Larapush\Services\Remote;
 use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
+use Brunocfalcao\Larapush\Services\Remote;
 
 /**
  * Controller that executes the necessary pre-checks before starting to
