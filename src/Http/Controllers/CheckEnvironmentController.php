@@ -2,9 +2,9 @@
 
 namespace Brunocfalcao\Larapush\Http\Controllers;
 
-use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
 
 /**
  * Controller that checks if this is a reserved environment.

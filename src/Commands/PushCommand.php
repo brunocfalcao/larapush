@@ -2,10 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Commands;
 
-use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
-use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
 use Brunocfalcao\Larapush\Services\Local;
+use Brunocfalcao\Larapush\Abstracts\InstallerBootstrap;
 use Brunocfalcao\Larapush\Utilities\CodebaseRepository;
+use Brunocfalcao\Larapush\Concerns\SimplifiesConsoleOutput;
 
 /**
  * Larapush push command.

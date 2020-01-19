@@ -2,8 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Structures;
 
-use Illuminate\Support\Str;
 use PhpZip\Model\ZipInfo;
+use Illuminate\Support\Str;
 
 /**
  * Class that stores a Zip resource to be later on added to the zip file.

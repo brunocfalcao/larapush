@@ -2,10 +2,10 @@
 
 namespace Brunocfalcao\Larapush\Http\Controllers;
 
-use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
-use Brunocfalcao\Larapush\Services\Remote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Brunocfalcao\Larapush\Services\Remote;
+use Brunocfalcao\Larapush\Abstracts\RemoteBaseController;
 
 /**
  * Controller that executes your scripts before a successful deployment.

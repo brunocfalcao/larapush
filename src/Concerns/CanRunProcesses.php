@@ -2,8 +2,8 @@
 
 namespace Brunocfalcao\Larapush\Concerns;
 
-use Symfony\Component\Process\Exception\RuntimeException;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\RuntimeException;
 
 /**
  * Trait used to allow process to be executed.

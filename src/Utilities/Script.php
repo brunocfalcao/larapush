@@ -2,9 +2,9 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use Brunocfalcao\Larapush\Concerns\CanRunProcesses;
 use Exception;
 use Illuminate\Support\Facades\Artisan;
+use Brunocfalcao\Larapush\Concerns\CanRunProcesses;
 
 /**
  * Class that executes scripts in the web server.
