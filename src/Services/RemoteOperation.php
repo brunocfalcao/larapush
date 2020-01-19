@@ -2,12 +2,12 @@
 
 namespace Brunocfalcao\Larapush\Services;
 
-use PhpZip\ZipFile;
-use Illuminate\Support\Facades\Storage;
-use Brunocfalcao\Larapush\Utilities\Script;
 use Brunocfalcao\Larapush\Concerns\CanRunProcesses;
 use Brunocfalcao\Larapush\Exceptions\RemoteException;
 use Brunocfalcao\Larapush\Utilities\CodebaseRepository;
+use Brunocfalcao\Larapush\Utilities\Script;
+use Illuminate\Support\Facades\Storage;
+use PhpZip\ZipFile;
 
 /**
  * Class that executes all operations contexted in your web server.

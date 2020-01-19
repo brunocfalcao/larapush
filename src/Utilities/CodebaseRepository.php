@@ -2,11 +2,11 @@
 
 namespace Brunocfalcao\Larapush\Utilities;
 
-use PhpZip\ZipFile;
-use Illuminate\Support\Facades\Storage;
-use Brunocfalcao\Larapush\Structures\ZipResource;
-use Brunocfalcao\Larapush\Structures\FileResource;
 use Brunocfalcao\Larapush\Exceptions\LocalException;
+use Brunocfalcao\Larapush\Structures\FileResource;
+use Brunocfalcao\Larapush\Structures\ZipResource;
+use Illuminate\Support\Facades\Storage;
+use PhpZip\ZipFile;
 
 /**
  * Class that stores a codebase repository structure.
@@ -80,7 +80,7 @@ final class CodebaseRepository
         return $files;
     }
 
-    public function createRepository(string $transaction) : void
+    public function createRepository(string $transaction): void
     {
         if (count(app('config')->get('larapush.codebase')) === 0) {
             throw new LocalException('No files or folders identified to upload. Please check your configuration file');
@@ -162,7 +162,7 @@ final class CodebaseRepository
         }
     }
 
-    public function createCodebaseZip(string $fqfilename, array $glob) : void
+    public function createCodebaseZip(string $fqfilename, array $glob): void
     {
         $zipFile = new ZipFile;
 
