@@ -21,9 +21,18 @@ trait CanRunProcesses
     {
         $path = $path ?? getcwd();
 
-        $process = new Process([$command], $path);
-        $process->setTimeout(300);
+        $process = (Process::fromShellCommandline($command, $path))->setTimeout(null);
+
+        if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
+            $process->setTty(true);
+        }
+
         $process->run();
+        /*
+        $process->run(function ($type, $line) {
+            $this->output->write($line);
+        });
+        */
 
         if (! $process->isSuccessful()) {
             throw new RuntimeException($process->getErrorOutput());
