@@ -21,8 +21,8 @@ trait CanRunProcesses
     {
         $path = $path ?? getcwd();
 
-        $process = (new Process($command, $path))->setTimeout(null);
-
+        $process = new Process([$command], $path);
+        $process->setTimeout(300);
         $process->run();
 
         if (! $process->isSuccessful()) {
