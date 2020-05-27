@@ -19,7 +19,7 @@
     "require": {
         "php": "^7.2",
         "illuminate/support": "^5.8.15|^6.0|^7.0",
-        "kitetail/zttp": "^0.5",
+        "kitetail/zttp": "^0.6",
         "sixlive/dotenv-editor": "^1.2",
         "laravel/helpers": "^1.0",
         "brunocfalcao/helpers": "^1.0",
